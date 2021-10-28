@@ -11,11 +11,11 @@ spec:
   - name: github-secret
   - name: quay-secret
   params:
-  - name: TAG
-    type: string
   - name: SOURCE_IMAGE
     type: string
   - name: CONFIGMAP_PREFIX
+    type: string
+  - name: component
     type: string
 
   tasks:
@@ -36,6 +36,26 @@ spec:
       value: ops
     - name: deleteExisting
       value: "true"
+
+
+
+  - name: check-version
+    taskRef:
+      name: checkversion
+    runAfter:
+    - git-clone-ops
+    workspaces:
+    - name: gitrepos
+      workspace: gitrepos
+    params:
+    - name: component_name
+      value: $(params.component)
+    - name: version_file_path
+      value: components/$(params.component)/VERSION
+
+
+
+
 
   - name: checkout-staging-branch
     taskRef:
@@ -63,7 +83,7 @@ spec:
       workspace: quay-secret
     params:
     - name: TAG
-      value: $(params.TAG)
+      value: $(tasks.check-version.results.image-tag)
     - name: SOURCE_IMAGE
       value: $(params.SOURCE_IMAGE)
     - name: TARGET_IMAGE_CONFIGMAPKEY
@@ -85,7 +105,7 @@ spec:
     - name: ENVIRONMENT
       value: PROD
     - name: TAG
-      value: $(params.TAG)
+      value: $(tasks.check-version.results.image-tag)
     - name: subdirectory
       value: ops
       

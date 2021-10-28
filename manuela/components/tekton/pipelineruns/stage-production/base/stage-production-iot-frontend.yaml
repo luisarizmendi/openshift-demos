@@ -9,12 +9,12 @@
     pipelineRef:
       name: stage-production
     params:
-    - name: TAG
-      value: ${TAG}
+    - name: component
+      value: iot-frontend
     - name: SOURCE_IMAGE
-      value: ${SOURCE_IMAGE}
+      value: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-frontend
     - name: CONFIGMAP_PREFIX
-      value: ${CONFIGMAP_PREFIX}
+      value: IOT_FRONTEND
     workspaces:
     - name: config
       configMap:
