@@ -3,9 +3,9 @@ kind: Kustomization
 
 resources:
 - product-catalog-cicd-namespace.yaml
-# Nexus
+# Nexus from https://github.com/redhat-cop/gitops-catalog
 - ../../../components/nexus2/base
-# Sonarqube
+# Sonarqube from https://github.com/redhat-cop/gitops-catalog
 #- ../../../components/sonarqube8/overlays/plugins
 # Tekton
 - pipeline-privileged.yaml

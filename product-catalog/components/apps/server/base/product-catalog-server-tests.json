@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "3318bb91-e3c4-418d-ac57-7aa070a23079",
+		"name": "Quarkus Product Catalog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2594ffd8-25dc-4efa-8436-b5aa8152707e",
+						"exec": [
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"data valid\", function() {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(12);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "user_key",
+						"value": "{{user_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{scheme}}://{{host}}/api/product",
+					"protocol": "{{scheme}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Existing Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f4eaf6e7-fc52-4c83-8c70-88af320cdebc",
+						"exec": [
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Data is correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(1);",
+							"    pm.expect(jsonData.name).to.eql(\"ASUS Zenbook 3\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "user_key",
+						"type": "text",
+						"value": "{{user_key}}"
+					}
+				],
+				"url": {
+					"raw": "{{scheme}}://{{host}}/api/product/1",
+					"protocol": "{{scheme}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Missing Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f4eaf6e7-fc52-4c83-8c70-88af320cdebc",
+						"exec": [
+							"pm.test(\"response is missing\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "user_key",
+						"type": "text",
+						"value": "{{user_key}}"
+					}
+				],
+				"url": {
+					"raw": "{{scheme}}://{{host}}/api/product/99",
+					"protocol": "{{scheme}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"99"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "welcome1",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "demo@demo.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{scheme}}://{{host}}/api/auth",
+					"protocol": "{{scheme}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Unauthorized User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "86d5ae6f-f46b-49bf-a60b-bacabed03f4e",
+						"exec": [
+							"tests[\"Is status code 401\"] = ",
+							"    responseCode.code === 401;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{scheme}}://{{host}}/api/user/1",
+					"protocol": "{{scheme}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Categories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c2848faa-8fdf-4674-b9a4-fe55456e405c",
+						"exec": [
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"data valid\", function() {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(3);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{scheme}}://{{host}}/api/category",
+					"protocol": "{{scheme}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Existing Category",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c2848faa-8fdf-4674-b9a4-fe55456e405c",
+						"exec": [
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Data is correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(1);",
+							"    pm.expect(jsonData.name).to.eql(\"Smartphone\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{scheme}}://{{host}}/api/category/1",
+					"protocol": "{{scheme}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"category",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Missing Category",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c2848faa-8fdf-4674-b9a4-fe55456e405c",
+						"exec": [
+							"pm.test(\"response is missing\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{scheme}}://{{host}}/api/category/99",
+					"protocol": "{{scheme}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"category",
+						"99"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
