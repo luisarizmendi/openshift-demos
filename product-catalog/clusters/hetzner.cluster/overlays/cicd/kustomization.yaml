@@ -23,7 +23,7 @@ patches:
 - target:
     kind: Pipeline
   patch: |-
-    - op: add
+    - op: replace
       path: /spec/params/-
       default:
         name: sonarqube_host
