@@ -25,6 +25,8 @@ spec:
       default: "false"
     - name: MAVEN_IMAGE
       default: image-registry.openshift-image-registry.svc:5000/openshift/java:openjdk-11-ubi8
+    - name: MAVEN_MIRROR_URL
+      default: ""
   tasks:
     - name: clone
       taskRef:
