@@ -10,7 +10,5 @@ resources:
 - ../../../components/tekton/tasks/base
 - ../../../components/tekton/triggers/build-and-test/base
 - ../../../components/tekton/shared-workspaces/base
-- ../../../components/tekton/pipelines/build-and-test/base
-- ../../../components/tekton/pipelines/build-base-images/base
-- ../../../components/tekton/pipelines/stage-production/base
-- ../../../components/tekton/pipelines/seed/base
+- ../../../components/tekton/pipelines
+
