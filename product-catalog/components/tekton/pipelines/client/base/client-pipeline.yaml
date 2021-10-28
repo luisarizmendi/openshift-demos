@@ -7,7 +7,6 @@ metadata:
 spec:
   workspaces:
     - name: git-source
-    - name: maven-settings
   params:
     - name: git_revision
       type: string
@@ -23,10 +22,6 @@ spec:
       description: "Set to true if you want the pipeline to create a PR to push to prod"
       type: string
       default: "false"
-    - name: MAVEN_IMAGE
-      default: image-registry.openshift-image-registry.svc:5000/openshift/java:openjdk-11-ubi8
-    - name: MAVEN_MIRROR_URL
-      default: ""
   tasks:
     - name: clone
       taskRef:
@@ -69,27 +64,6 @@ spec:
       workspaces:
         - name: source
           workspace: git-source
-    - name: deploy-nexus
-      taskRef:
-        name: maven
-        kind: Task
-      workspaces:
-        - name: source
-          workspace: git-source
-        - name: maven-settings
-          workspace: maven-settings
-      runAfter:
-        - quality
-      params:
-        - name: MAVEN_IMAGE
-          value: $(params.MAVEN_IMAGE)
-        - name: MAVEN_MIRROR_URL
-          value: "$(params.MAVEN_MIRROR_URL)"
-        - name: MAVEN_REPO_CONFIG_SECRET
-          value: "maven-repo-creds"
-        - name: GOALS
-          value:
-            - deploy
     - name: build-image
       taskRef:
         name: binary-s2i
@@ -121,7 +95,6 @@ spec:
         kind: Task
       runAfter:
         - tag-image
-        - deploy-nexus
       params:
         - name: src-image
           value: image-registry.openshift-image-registry.svc:5000/product-catalog-cicd/client:$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)

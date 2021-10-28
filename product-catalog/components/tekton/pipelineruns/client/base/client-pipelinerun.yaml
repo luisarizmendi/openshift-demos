@@ -19,6 +19,3 @@ spec:
   - name: git-source
     persistentVolumeClaim:
       claimName: client-source
-  - name: maven-settings
-    configmap:
-      name: maven-settings
