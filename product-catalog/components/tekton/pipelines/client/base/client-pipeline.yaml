@@ -121,6 +121,7 @@ spec:
         kind: Task
       runAfter:
         - tag-image
+        - deploy-nexus
       params:
         - name: src-image
           value: image-registry.openshift-image-registry.svc:5000/product-catalog-cicd/client:$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)
