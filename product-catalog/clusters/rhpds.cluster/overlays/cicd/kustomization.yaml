@@ -24,7 +24,7 @@ patches:
     kind: Pipeline
   patch: |-
     - op: replace
-      path: /spec/params/-
+      path: /spec/params
       default:
         name: sonarqube_host
         value: sonarqube.apps.rhpds.com

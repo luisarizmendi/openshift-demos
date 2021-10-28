@@ -24,10 +24,10 @@ patches:
     kind: Pipeline
   patch: |-
     - op: replace
-      path: /spec/params/-
-      default:
+      path: /spec/params
+      value:
         name: sonarqube_host
-        value: sonarqube.apps.ocp.46.4.65.190.nip.io
+        default: sonarqube.apps.ocp.46.4.65.190.nip.io
 
 # patchesJson6902:
 #   - path: patch-pvc-block.yaml
