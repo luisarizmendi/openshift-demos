@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+    argocd.argoproj.io/sync-options: Prune=false
+  generateName: client-push-prod-pr-
+spec:
+  serviceAccountName: github-pipeline
+  pipelineRef:
+    name: push-prod-pr
+  params:
+    - name: image_dest_tag
+      value: 3b49f65-1319977405
+    - name: image_dest_url
+      value: quay.io/luisarizmendi/product-catalog-client
+    - name: environment_gitops_path
+      value: environments/overlays/prod
+    - name: app
+      value: client
+  workspaces:
+  - name: git-source
+    persistentVolumeClaim:
+      claimName: manifest-source

@@ -1,0 +1,238 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: server
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  workspaces:
+    - name: git-source
+    - name: maven-settings
+    - name: newman-env
+  params:
+    - name: git_revision
+      type: string
+      default: master
+    - name: git_url
+      type: string
+      default: https://github.com/luisarizmendi/product-catalog-server
+    - name: MAVEN_MIRROR_URL
+      default: ""
+    - name: image_dest_url
+      type: string
+      description: External registry location to copy image to
+      default: quay.io/luisarizmendi/product-catalog-server
+    - name: push-to-prod
+      description: "Set to true if you want the pipeline to create a PR to push to prod"
+      type: string
+      default: "false"
+    - name: cluster
+      type: string
+      description: Cluster to push to
+      default: "local.home"
+    - name: MAVEN_IMAGE
+      default: image-registry.openshift-image-registry.svc:5000/openshift/java:openjdk-11-ubi8
+  tasks:
+    - name: clone
+      taskRef:
+        name: git-clone
+        kind: ClusterTask
+      workspaces:
+        - name: output
+          workspace: git-source
+      params:
+        - name: url
+          value: "$(params.git_url)"
+        - name: revision
+          value: "$(params.git_revision)"
+        - name: deleteExisting
+          value: "true"
+    - name: generate-id
+      taskRef:
+        name: generate-id
+        kind: Task
+      runAfter:
+        - clone
+      workspaces:
+        - name: source
+          workspace: git-source
+    - name: build
+      taskRef:
+        name: maven
+        kind: Task
+      workspaces:
+        - name: source
+          workspace: git-source
+        - name: maven-settings
+          workspace: maven-settings
+      runAfter:
+        - generate-id
+      params:
+        - name: MAVEN_IMAGE
+          value: $(params.MAVEN_IMAGE)
+        - name: MAVEN_MIRROR_URL
+          value: "$(params.MAVEN_MIRROR_URL)"
+        - name: MAVEN_REPO_CONFIG_SECRET
+          value: "maven-repo-creds"
+        - name: GOALS
+          value:
+            - "package"
+    - name: quality
+      taskRef:
+        name: maven
+        kind: Task
+      workspaces:
+        - name: source
+          workspace: git-source
+        - name: maven-settings
+          workspace: maven-settings
+      runAfter:
+        - build
+      params:
+        - name: MAVEN_IMAGE
+          value: $(params.MAVEN_IMAGE)
+        - name: MAVEN_MIRROR_URL
+          value: "$(params.MAVEN_MIRROR_URL)"
+        - name: MAVEN_REPO_CONFIG_SECRET
+          value: "maven-repo-creds"
+        - name: GOALS
+          value:
+            - "sonar:sonar"
+            - "-Pquality"
+    - name: deploy-nexus
+      taskRef:
+        name: maven
+        kind: Task
+      workspaces:
+        - name: source
+          workspace: git-source
+        - name: maven-settings
+          workspace: maven-settings
+      runAfter:
+        - quality
+      params:
+        - name: MAVEN_IMAGE
+          value: $(params.MAVEN_IMAGE)
+        - name: MAVEN_MIRROR_URL
+          value: "$(params.MAVEN_MIRROR_URL)"
+        - name: MAVEN_REPO_CONFIG_SECRET
+          value: "maven-repo-creds"
+        - name: GOALS
+          value:
+            - deploy
+    - name: build-image
+      taskRef:
+        name: binary-s2i
+        kind: Task
+      workspaces:
+        - name: source
+          workspace: git-source
+      runAfter:
+        - quality
+      params:
+        - name: file
+          value: "$(workspaces.source.path)/target/*-runner.jar"
+        - name: buildconfig
+          value: server
+    - name: tag-image
+      taskRef:
+        name: openshift-client
+        kind: ClusterTask
+      runAfter:
+        - build-image
+      params:
+        - name: SCRIPT
+          value: |
+            echo "Taging image server@$(tasks.build-image.results.digest) to server:$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)"
+            oc tag server@$(tasks.build-image.results.digest) server:$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)
+    - name: push-dev-image
+      taskRef:
+        name: push-image
+        kind: Task
+      runAfter:
+        - tag-image
+        - deploy-nexus
+      params:
+        - name: src-image
+          value: image-registry.openshift-image-registry.svc:5000/product-catalog-cicd/server:$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)
+        - name: dest-image
+          value: $(params.image_dest_url)
+        - name: dest-tags
+          value: $(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid),dev
+    - name: deploy-dev
+      taskRef:
+        name: deploy
+        kind: Task
+      runAfter:
+        - push-dev-image
+      params:
+        - name: NAME
+          value: server
+        - name: NAMESPACE
+          value: product-catalog-dev
+    - name: dev-test
+      taskRef:
+        name: newman
+        kind: Task
+      runAfter:
+        - deploy-dev
+      params:
+        - name: COLLECTION
+          value: https://raw.githubusercontent.com/gnunn-gitops/product-catalog-server/master/tests/product-catalog-server-tests.json
+        - name: ENVIRONMENT
+          value: newman-dev-env.json
+      workspaces:
+        - name: newman-env
+          workspace: newman-env
+    - name: push-test-image
+      taskRef:
+        name: push-image
+        kind: Task
+      runAfter:
+        - dev-test
+      params:
+        - name: src-image
+          value: image-registry.openshift-image-registry.svc:5000/product-catalog-cicd/server:$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid)
+        - name: dest-image
+          value: $(params.image_dest_url)
+        - name: dest-tags
+          value: $(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid),test,latest
+    - name: deploy-test
+      taskRef:
+        name: deploy
+        kind: Task
+      runAfter:
+        - push-test-image
+      params:
+        - name: NAME
+          value: server
+        - name: NAMESPACE
+          value: product-catalog-test
+    - name: test-test
+      taskRef:
+        name: newman
+        kind: Task
+      runAfter:
+        - deploy-test
+      params:
+        - name: COLLECTION
+          value: https://raw.githubusercontent.com/gnunn-gitops/product-catalog-server/master/tests/product-catalog-server-tests.json
+        - name: ENVIRONMENT
+          value: newman-test-env.json
+      workspaces:
+        - name: newman-env
+          workspace: newman-env
+    - name: create-prod-pr
+      taskRef:
+        name: tkn
+        kind: Task
+      when:
+        - input: "$(params.push-to-prod)"
+          operator: in
+          values: ["true","yes"]
+      runAfter:
+        - test-test
+      params:
+        - name: commands
+          value: |
+            tkn pipeline start push-prod-pr --prefix-name server -p image_dest_tag=$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid) -p image_dest_url=quay.io/luisarizmendi/product-catalog-server -p cluster=$(params.cluster) -p app=server -s github-pipeline -w name=git-source,claimName=manifest-source

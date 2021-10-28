@@ -1,0 +1,113 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: push-prod-pr
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  workspaces:
+    - name: git-source
+  params:
+    - name: git_revision
+      type: string
+      default: master
+    - name: git_url
+      type: string
+      default: https://github.com/gnunn-gitops/product-catalog
+    - name: image_dest_url
+      type: string
+      description: External registry location of image to push without tag
+    - name: image_dest_tag
+      type: string
+      description: Tag of image to push to production
+    - name: environment_gitops_path
+      type: string
+      description: Path where PROD kustomize.yaml is located in GitOps repo
+    - name: app
+      type: string
+      description: Either 'server' or 'client'
+    - name: sonarqube_host
+      type: string
+      description: Hostname for sonarqube
+      default: sonarqube.apps.home.ocplab.com
+  tasks:
+    - name: clone
+      taskRef:
+        name: git-clone
+        kind: ClusterTask
+      workspaces:
+        - name: output
+          workspace: git-source
+      params:
+        - name: url
+          value: "$(params.git_url)"
+        - name: revision
+          value: "$(params.git_revision)"
+        - name: deleteExisting
+          value: "true"
+    - name: branch
+      taskRef:
+        name: git
+      runAfter:
+        - clone
+      workspaces:
+        - name: source
+          workspace: git-source
+      params:
+        - name: commands
+          value: |
+            git checkout -b push-$(params.image_dest_tag)
+    - name: patch
+      taskRef:
+        name: kustomize
+      params:
+        - name: old-image
+          value: "$(params.image_dest_url)"
+        - name: new-image
+          value: "$(params.image_dest_url)"
+        - name: new-tag
+          value: "$(params.image_dest_tag)"
+        - name: overlaypath
+          value: "$(params.environment_gitops_path)"
+      runAfter:
+        - branch
+      workspaces:
+        - name: source
+          workspace: git-source
+    - name: commit
+      taskRef:
+        name: git
+      runAfter:
+        - patch
+      workspaces:
+        - name: source
+          workspace: git-source
+      params:
+        - name: commands
+          value: |
+            git status
+            #cat ~/.gitconfig
+            echo "https://$GITHUB_USER:$GITHUB_TOKEN@github.com" > ~/.git-credentials
+            git config --global credential.helper store 'store --file ~/.git-credentials'
+            git config --global user.email "$GITHUB_EMAIL"
+            git add -u
+            git commit -m 'Pushing image $(params.image_dest_url):$(params.image_dest_tag) to production'
+            git push origin push-$(params.image_dest_tag)
+    - name: prod-pr-deploy
+      taskRef:
+        name: task-create-pr
+        kind: Task
+      runAfter:
+        - commit
+      workspaces:
+        - name: source
+          workspace: git-source
+      params:
+        - name: title
+          value: Update image to $(params.image_dest_tag)
+        - name: body
+          value: |-
+            Please review the following links before accepting the PR:
+
+            Image Vulnerabilities: https://$(params.image_dest_url):$(params.image_dest_tag)
+            Sonarqube Results: http://$(params.sonarqube_host)/dashboard?id=product-catalog-$(params.app)

@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: iot-consumer
+resources:
+- iot-consumer-namespace.yaml
+- iot-consumer-admin-rolebinding.yaml
+- iot-consumer-view-rolebinding.yaml
+- ../../../../components/apps/iot-consumer/base
+- ../../../../components/apps/iot-mqtt2kafka-integration/base
+patchesStrategicMerge:
+- iot-consumer-is.yaml
+images:
+- name: iot-consumer
+  #- name: iot-consumer
+  #  newName: quay.io/luisarizmendi/iot-consumer
+  #  newTag: 0.3.2-1
+
+  newName: image-registry.openshift-image-registry.svc:5000/iot-consumer/iot-consumer
+  newTag: 0.3.2-6

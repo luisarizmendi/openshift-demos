@@ -1,0 +1,20 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: iot-frontend
+spec:
+  tags:
+  - name: 0.3.1-1
+    from:
+      kind: DockerImage
+      name: quay.io/luisarizmendi/iot-frontend:0.3.1-1
+    importPolicy: {}
+    referencePolicy:
+      type: Local
+  - name: 0.3.1-9
+    from:
+      kind: DockerImage
+      name: quay.io/luisarizmendi/iot-frontend:0.3.1-9
+    importPolicy: {}
+    referencePolicy:
+      type: Local

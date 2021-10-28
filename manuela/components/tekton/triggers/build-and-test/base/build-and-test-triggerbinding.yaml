@@ -1,0 +1,12 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  name: build-and-test-triggerbinding
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+ params:
+ - name: gitrepository
+   value: $(body.repository.full_name)
+ - name: gitid
+   value: $(body.after)

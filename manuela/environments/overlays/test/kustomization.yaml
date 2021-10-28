@@ -1,0 +1,32 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: manuela-test
+resources:
+- manuela-test-namespace.yaml
+- manuela-test-operatorgroup.yaml
+- manuela-test-admin-rolebinding.yaml
+- manuela-test-view-rolebinding.yaml
+- manuela-cicd-system-image-builder-role-binding.yaml
+- installplan-approver
+- ../../../components/apps/iot-frontend/base
+- ../../../components/apps/iot-consumer/base
+- ../../../components/apps/iot-software-sensor/base
+- ../../../components/apps/iot-anomaly-detection/base
+- ../../../components/apps/iot-mqtt2kafka-integration/base
+images:
+- name: iot-consumer
+  #- name: iot-consumer
+  #  newName: quay.io/luisarizmendi/iot-consumer
+  #  newTag: test-0.3.2-1
+
+  newName: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-consumer
+  newTag: 0.3.2-6
+- name: iot-software-sensor #- name: iot-software-sensor
+  newName: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-software-sensor
+  newTag: 0.3.1-7
+- name: iot-frontend #- name: iot-frontend
+  newName: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-frontend
+  newTag: 0.3.1-9
+- name: iot-anomaly-detection #- name: iot-anomaly-detection
+  newName: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-anomaly-detection
+  newTag: 0.3.2-9

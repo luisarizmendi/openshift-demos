@@ -1,0 +1,11 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  labels:
+    application: iot-software-sensor
+    app.kubernetes.io/part-of: manuela
+  name: iot-software-sensor
+spec:
+  lookupPolicy:
+    local: false
+  tags: []

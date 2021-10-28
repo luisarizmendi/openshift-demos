@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- build-and-test-iot-anomaly-detection.yaml
+- build-and-test-iot-frontend.yaml
+- build-and-test-iot-consumer.yaml
+- build-and-test-iot-software-sensor.yaml

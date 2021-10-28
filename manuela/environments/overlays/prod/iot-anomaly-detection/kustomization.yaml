@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: iot-anomaly-detection
+resources:
+- iot-anomaly-detection-namespace.yaml
+- iot-anomaly-detection-admin-rolebinding.yaml
+- iot-anomaly-detection-view-rolebinding.yaml
+- ../../../../components/apps/iot-anomaly-detection/base
+patchesStrategicMerge:
+- iot-anomaly-detection-is.yaml
+images:
+- name: iot-anomaly-detection
+  #- name: iot-anomaly-detection
+  #  newName: quay.io/luisarizmendi/iot-anomaly-detection
+  #  newTag: 0.3.2-1
+
+  newName: image-registry.openshift-image-registry.svc:5000/iot-anomaly-detection/iot-anomaly-detection
+  newTag: 0.3.2-8

@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: product-catalog-prod
+
+resources:
+- product-catalog-prod-namespace.yaml
+- ../../../components/apps/database/base
+- ../../../components/apps/server/base
+- ../../../components/apps/client/base
+- post-sync-pipeline-job.yaml
+
+
+images:
+- name: quay.io/luisarizmendi/product-catalog-client
+  newTag: prod
+  
+- name: quay.io/luisarizmendi/product-catalog-server
+  newName: quay.io/luisarizmendi/product-catalog-server
+  newTag: prod

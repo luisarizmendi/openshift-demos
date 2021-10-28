@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- manuela-cicd-namespace.yaml
+- manuela-cicd-admin-rolebinding.yaml
+- manuela-cicd-view-rolebinding.yaml
+- pipeline-privileged.yaml
+- ../../../components/tekton/pipelines-operator
+- ../../../components/tekton/tasks/base
+- ../../../components/tekton/triggers/build-and-test/base
+- ../../../components/tekton/shared-workspaces/base
+- ../../../components/tekton/pipelines/build-and-test/base
+- ../../../components/tekton/pipelines/build-base-images/base
+- ../../../components/tekton/pipelines/stage-production/base
+- ../../../components/tekton/pipelines/seed/base

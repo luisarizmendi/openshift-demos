@@ -1,0 +1,35 @@
+  apiVersion: tekton.dev/v1beta1
+  kind: PipelineRun
+  metadata:
+    generateName: build-image-httpd-ionic-
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-options: Prune=false
+  spec:
+    pipelineRef:
+      name: build-images
+    workspaces:
+    - name: config
+      configMap:
+        name: environment
+    - name: github-secret
+      secret:
+        secretName: github
+    - name: quay-secret
+      secret:
+        secretName: quay-build-secret
+    - name: gitrepos
+      # volumeClaimTemplate:
+      #   spec:
+      #     accessModes: 
+      #     - ReadWriteMany
+      #     resources:
+      #       requests:
+      #         storage: 1Gi
+      persistentVolumeClaim:
+        claimName: build-images-gitrepos
+    params:
+    - name: PATH_CONTEXT
+      value: tekton/images/httpd-ionic
+    - name: OUTPUT_IMAGE_CONFIGMAPKEY
+      value: HTTPD_IONIC_REMOTE_IMAGE

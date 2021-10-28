@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - iot-frontend
+  - iot-software-sensor
+  - iot-consumer
+#  - iot-anomaly-detection

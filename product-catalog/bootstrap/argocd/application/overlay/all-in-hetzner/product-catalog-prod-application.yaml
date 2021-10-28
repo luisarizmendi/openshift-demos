@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: product-catalog-prod
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+    argocd.argoproj.io/sync-options: Prune=false
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/luisarizmendi/openshift-demos
+    targetRevision: master
+    path: product-catalog/clusters/hetzner.cluster/overlays/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: product-catalog-prod
+
+  syncPolicy:
+    automated: 
+      prune: false
+      selfHeal: true
+
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/replicas
+  - group: route.openshift.io
+    kind: Route
+    jsonPointers:
+    - /status
+  - group: image.openshift.io
+    kind: ImageStream
+    jsonPointers:
+    - /spec/tags
+

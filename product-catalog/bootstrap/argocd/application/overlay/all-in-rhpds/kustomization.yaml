@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: product-catalog-gitops
+
+resources:
+- product-catalog-dev-application.yaml
+- product-catalog-test-application.yaml
+- product-catalog-prod-application.yaml
+- product-catalog-cicd-application.yaml
+- product-catalog-monitor-application.yaml

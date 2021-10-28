@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: iot-frontend
+resources:
+- iot-frontend-namespace.yaml
+- iot-frontend-admin-rolebinding.yaml
+- iot-frontend-view-rolebinding.yaml
+- ../../../../components/apps/iot-frontend/base
+patchesStrategicMerge:
+- iot-frontend-is.yaml
+images:
+- name: iot-frontend
+  #- name: iot-frontend
+  #  newName: quay.io/luisarizmendi/iot-frontend
+  #  newTag: 0.3.1-1
+
+  newName: image-registry.openshift-image-registry.svc:5000/iot-frontend/iot-frontend
+  newTag: 0.3.1-9

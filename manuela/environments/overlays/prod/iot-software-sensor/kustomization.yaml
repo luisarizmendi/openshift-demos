@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: iot-software-sensor
+resources:
+- iot-software-sensor-namespace.yaml
+- iot-software-sensor-admin-rolebinding.yaml
+- iot-software-sensor-view-rolebinding.yaml
+- ../../../../components/apps/iot-software-sensor/base
+patchesStrategicMerge:
+- iot-software-sensor-is.yaml
+images:
+- name: iot-software-sensor
+  #- name: iot-software-sensor
+  #  newName: quay.io/luisarizmendi/iot-software-sensor
+  #  newTag: 0.3.1-1
+
+  newName: image-registry.openshift-image-registry.svc:5000/iot-software-sensor/iot-software-sensor
+  newTag: 0.3.1-7

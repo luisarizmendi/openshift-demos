@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  server:
+    route:
+      annotations: {}
+      enabled: true
+      path: /
+      TLS:
+        insecureEdgeTerminationPolicy: Redirect
+        termination: passthrough
+      wildcardPolicy: None
+    insecure: false
+    resources: {}
+  dex:
+    image: quay.io/ablock/dex
+    openShiftOAuth: true
+    version: openshift-connector
+  rbac:
+    defaultPolicy: role:admin
+#see: https://argocd-operator.readthedocs.io/en/latest/reference/argocd/
+#  kustomizeBuildOptions: --load_restrictor none --enable_alpha_plugins
+  applicationSet: {}
+  resourceCustomizations: |
+    bitnami.com/SealedSecret:
+      health.lua: |
+        hs = {}
+        hs.status = "Healthy"
+        hs.message = "Controller doesn't report resource status"
+        return hs

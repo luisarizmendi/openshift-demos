@@ -1,0 +1,8 @@
+.DS_Store
+scripts/deploy_argo/kubeseal-cert.pem
+manuela/scripts/sealed-secrets/kubeseal-cert.pem
+manuela/scripts/sealed-secrets/env_secrets
+
+
+product-catalog/scripts/sealed-secrets/kubeseal-cert.pem
+product-catalog/scripts/sealed-secrets/env_secrets

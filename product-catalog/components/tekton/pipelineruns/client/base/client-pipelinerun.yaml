@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+    argocd.argoproj.io/sync-options: Prune=false
+  generateName: client-
+spec:
+  pipelineRef:
+    name: client
+  params:
+    - name: push-to-prod
+      value: "false"
+    - name: environment_gitops_path
+      value: environments/overlays/prod
+  workspaces:
+  - name: git-source
+    persistentVolumeClaim:
+      claimName: client-source

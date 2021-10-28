@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: manuela-test
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+    argocd.argoproj.io/sync-options: Prune=false
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/luisarizmendi/openshift-demos
+    targetRevision: master
+    path: manuela/clusters/hetzner.cluster/overlays/test
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: manuela-test
+
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true
+
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/replicas
+  - group: route.openshift.io
+    kind: Route
+    jsonPointers:
+    - /status
+  - group: image.openshift.io
+    kind: ImageStream
+    jsonPointers:
+    - /spec/tags
+  - group: apps.openshift.io
+    kind: DeploymentConfig
+    jsonPointers:
+    - /spec/template/spec/containers/0/image
+

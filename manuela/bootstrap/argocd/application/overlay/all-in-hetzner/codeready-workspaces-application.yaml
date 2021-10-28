@@ -1,0 +1,81 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: codeready-workspaces
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+    argocd.argoproj.io/sync-options: Prune=false
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/luisarizmendi/openshift-demos
+    targetRevision: master
+    path: manuela/environments/overlays/codeready-workspaces
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: codeready-workspaces
+
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true
+
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/replicas
+  - group: route.openshift.io
+    kind: Route
+    jsonPointers:
+    - /status
+  - group: image.openshift.io
+    kind: ImageStream
+    jsonPointers:
+    - /spec/tags
+  - group: apps.openshift.io
+    kind: DeploymentConfig
+    jsonPointers:
+    - /spec/template/spec/containers/0/image
+  - group: operators.coreos.com
+    kind: OperatorGroup
+    jsonPointers:
+    - /metadata/annotations/olm.providedAPIs
+  - group: org.eclipse.che
+    kind: CheCluster
+    jsonPointers:
+    - /metadata/managedFields
+  - group: org.eclipse.che
+    kind: CheCluster
+    jsonPointers:
+    - /spec/auth/identityProviderURL
+  - group: org.eclipse.che
+    kind: CheCluster
+    jsonPointers:
+    - /spec/auth/oAuthClientName
+  - group: org.eclipse.che
+    kind: CheCluster
+    jsonPointers:
+    - /spec/auth/oAuthSecret
+  - group: org.eclipse.che
+    kind: CheCluster
+    jsonPointers:
+    - /spec/auth/identityProviderClientId
+  - group: org.eclipse.che
+    kind: CheCluster
+    jsonPointers:
+    - /spec/auth/identityProviderRealm
+  - group: org.eclipse.che
+    kind: CheCluster
+    jsonPointers:
+    - /spec/database/chePostgresDb
+  - group: org.eclipse.che
+    kind: CheCluster
+    jsonPointers:
+    - /spec/database/chePostgresHostName
+  - group: org.eclipse.che
+    kind: CheCluster
+    jsonPointers:
+    - /spec/database/chePostgresPort
+

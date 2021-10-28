@@ -1,0 +1,16 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: anomaly-detection
+  labels:
+    component: serving
+    app.kubernetes.io/part-of: manuela
+spec:
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: anomaly-detection-predictor-anomaly-detection
+  tls:
+    insecureEdgeTerminationPolicy: Allow
+    termination: edge

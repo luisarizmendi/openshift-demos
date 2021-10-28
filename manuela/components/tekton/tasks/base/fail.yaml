@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: fail
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  steps:
+  - name: fail
+    image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/git-init:v0.11.0
+    script: |
+      exit 1

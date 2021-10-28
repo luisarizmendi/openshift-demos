@@ -1,0 +1,40 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: git
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  workspaces:
+    - name: source
+  params:
+    - name: commands
+      type: string
+      description: The set of commands to run
+    - name: github-secret
+      type: string
+      default: github
+      description: "The name of the secret that has your github username and token"
+  steps:
+  - name: git
+    workingDir: $(workspaces.source.path)
+    image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/git-init:v0.12.1
+    script: |
+      #!/usr/bin/env sh
+      $(params.commands)
+    env:
+      - name: GITHUB_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: $(params.github-secret)
+            key: token
+      - name: GITHUB_USER
+        valueFrom:
+          secretKeyRef:
+            name: $(params.github-secret)
+            key: user
+      - name: GITHUB_EMAIL
+        valueFrom:
+          secretKeyRef:
+            name: $(params.github-secret)
+            key: email

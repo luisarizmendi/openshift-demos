@@ -1,0 +1,40 @@
+---
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerTemplate
+metadata:
+  name: client
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  params:
+    - name: git-revision
+      description: The git revision
+      default: master
+    - name: git-url
+      description: The git repository url
+    - name: content-type
+      description: The Content-Type of the event
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        annotations:
+          argocd.argoproj.io/compare-options: IgnoreExtraneous
+          argocd.argoproj.io/sync-options: Prune=false
+        labels:
+          tekton.dev/pipeline: client
+        generateName: client-webhook-
+      spec:
+        pipelineRef:
+          name: client
+        params:
+          - name: git-url
+            value: $(params.git-url)
+          - name: git-revision
+            value: $(params.git-revision)
+          - name: push-to-prod
+            value: "true"
+        workspaces:
+          - name: git-source
+            persistentVolumeClaim:
+              claimName: client-source

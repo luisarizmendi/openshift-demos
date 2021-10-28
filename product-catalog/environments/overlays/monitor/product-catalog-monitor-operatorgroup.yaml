@@ -1,0 +1,12 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  generateName: product-catalog-monitor-
+  generation: 1
+  name: product-catalog-monitor
+  namespace: product-catalog-monitor
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  targetNamespaces:
+  - product-catalog-monitor
