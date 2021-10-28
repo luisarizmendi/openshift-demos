@@ -26,10 +26,6 @@ spec:
       description: "Set to true if you want the pipeline to create a PR to push to prod"
       type: string
       default: "false"
-    - name: cluster
-      type: string
-      description: Cluster to push to
-      default: "local.home"
     - name: MAVEN_IMAGE
       default: image-registry.openshift-image-registry.svc:5000/openshift/java:openjdk-11-ubi8
   tasks:
