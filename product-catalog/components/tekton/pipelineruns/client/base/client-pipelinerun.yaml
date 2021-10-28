@@ -10,7 +10,7 @@ spec:
     name: client
   params:
     - name: push-to-prod
-      value: "false"
+      value: "true"
     - name: environment_gitops_path
       value: product-catalog/environments/overlays/prod
   workspaces:

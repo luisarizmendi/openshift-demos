@@ -68,6 +68,27 @@ spec:
       workspaces:
         - name: source
           workspace: git-source
+    - name: deploy-nexus
+      taskRef:
+        name: maven
+        kind: Task
+      workspaces:
+        - name: source
+          workspace: git-source
+        - name: maven-settings
+          workspace: maven-settings
+      runAfter:
+        - quality
+      params:
+        - name: MAVEN_IMAGE
+          value: $(params.MAVEN_IMAGE)
+        - name: MAVEN_MIRROR_URL
+          value: "$(params.MAVEN_MIRROR_URL)"
+        - name: MAVEN_REPO_CONFIG_SECRET
+          value: "maven-repo-creds"
+        - name: GOALS
+          value:
+            - deploy
     - name: build-image
       taskRef:
         name: binary-s2i
@@ -154,4 +175,4 @@ spec:
       params:
         - name: commands
           value: |
-            tkn pipeline start push-prod-pr --prefix-name client -p image_dest_tag=$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid) -p image_dest_url=quay.io/luisarizmendi/product-catalog-client -p cluster=$(params.cluster) -p app=client -s github-pipeline -w name=git-source,claimName=manifest-source
+            tkn pipeline start push-prod-pr --prefix-name client -p image_dest_tag=$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid) -p image_dest_url=quay.io/luisarizmendi/product-catalog-client -p git_url=https://github.com/luisarizmendi/openshift-demos -p app=client -s github-pipeline -w name=git-source,claimName=manifest-source

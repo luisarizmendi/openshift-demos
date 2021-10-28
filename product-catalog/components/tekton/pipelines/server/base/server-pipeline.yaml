@@ -235,4 +235,4 @@ spec:
       params:
         - name: commands
           value: |
-            tkn pipeline start push-prod-pr --prefix-name server -p image_dest_tag=$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid) -p image_dest_url=quay.io/luisarizmendi/product-catalog-server -p cluster=$(params.cluster) -p app=server -s github-pipeline -w name=git-source,claimName=manifest-source
+            tkn pipeline start push-prod-pr --prefix-name server -p image_dest_tag=$(tasks.generate-id.results.short-commit)-$(tasks.generate-id.results.build-uid) -p image_dest_url=quay.io/luisarizmendi/product-catalog-server -p git_url=https://github.com/luisarizmendi/openshift-demos -p app=server -s github-pipeline -w name=git-source,claimName=manifest-source
