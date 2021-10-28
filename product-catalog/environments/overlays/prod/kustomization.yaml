@@ -11,10 +11,10 @@ resources:
 - post-sync-pipeline-job.yaml
 
 
+  
 images:
 - name: quay.io/luisarizmendi/product-catalog-client
   newTag: prod
-  
 - name: quay.io/luisarizmendi/product-catalog-server
   newName: quay.io/luisarizmendi/product-catalog-server
-  newTag: prod
+  newTag: 813e347-3928055513
