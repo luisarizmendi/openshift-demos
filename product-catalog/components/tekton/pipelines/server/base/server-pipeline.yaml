@@ -178,7 +178,7 @@ spec:
         - deploy-dev
       params:
         - name: COLLECTION
-          value: https://raw.githubusercontent.com/gnunn-gitops/product-catalog-server/master/tests/product-catalog-server-tests.json
+          value: https://raw.githubusercontent.com/luisarizmendi/openshift-demos/master/product-catalog/components/apps/server/base/product-catalog-server-tests.json
         - name: ENVIRONMENT
           value: newman-dev-env.json
       workspaces:
@@ -216,7 +216,7 @@ spec:
         - deploy-test
       params:
         - name: COLLECTION
-          value: https://raw.githubusercontent.com/gnunn-gitops/product-catalog-server/master/tests/product-catalog-server-tests.json
+          value: https://raw.githubusercontent.com/luisarizmendi/openshift-demos/master/product-catalog/components/apps/server/base/product-catalog-server-tests.json
         - name: ENVIRONMENT
           value: newman-test-env.json
       workspaces:
