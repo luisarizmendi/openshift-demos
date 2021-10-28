@@ -9,6 +9,8 @@ spec:
   pipelineRef:
     name: client
   params:
+    - name: MAVEN_MIRROR_URL
+      value: http://nexus:8081/content/groups/public/
     - name: push-to-prod
       value: "true"
     - name: environment_gitops_path
@@ -17,3 +19,6 @@ spec:
   - name: git-source
     persistentVolumeClaim:
       claimName: client-source
+  - name: maven-settings
+    configmap:
+      name: maven-settings
