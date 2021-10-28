@@ -28,8 +28,7 @@ patches:
   patch: |-
     - op: replace
       path: /spec/params/0/default
-      value: sonarqube_host
-
+      value: sonarqube.apps.ocp.46.4.65.190.nip.io
   
 
 # patchesJson6902:
