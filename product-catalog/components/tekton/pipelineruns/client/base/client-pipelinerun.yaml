@@ -12,7 +12,7 @@ spec:
     - name: push-to-prod
       value: "false"
     - name: environment_gitops_path
-      value: environments/overlays/prod
+      value: product-catalog/environments/overlays/prod
   workspaces:
   - name: git-source
     persistentVolumeClaim:

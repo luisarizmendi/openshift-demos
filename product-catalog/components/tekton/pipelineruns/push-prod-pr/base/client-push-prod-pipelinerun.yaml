@@ -15,9 +15,11 @@ spec:
     - name: image_dest_url
       value: quay.io/luisarizmendi/product-catalog-client
     - name: environment_gitops_path
-      value: environments/overlays/prod
+      value: product-catalog/environments/overlays/prod
     - name: app
       value: client
+    - name: git_url
+      value: https://github.com/luisarizmendi/openshift-demos
   workspaces:
   - name: git-source
     persistentVolumeClaim:
