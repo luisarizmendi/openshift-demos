@@ -19,6 +19,17 @@ resources:
 - github-sealed-secret.yaml
 - slack-deployments-webhook-sealed-secret.yaml
 
+patches:
+- target:
+    kind: Pipeline
+  patch: |-
+    - op: add
+      path: /spec/params/-
+      default:
+        name: sonarqube_host
+        value: sonarqube.apps.rhpds.com
+
+
 # patchesJson6902:
 #   - path: patch-pvc-block.yaml
 #     target:
