@@ -21,13 +21,16 @@ resources:
 
 patches:
 - target:
+    group: tekton.dev
+    version: v1beta1
     kind: Pipeline
+    name: push-prod-pr
   patch: |-
     - op: replace
-      path: /spec/params
-      value:
-        name: sonarqube_host
-        default: sonarqube.apps.ocp.46.4.65.190.nip.io
+      path: /spec/params/0/default
+      value: sonarqube_host
+
+  
 
 # patchesJson6902:
 #   - path: patch-pvc-block.yaml

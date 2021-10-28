@@ -8,6 +8,10 @@ spec:
   workspaces:
     - name: git-source
   params:
+    - name: sonarqube_host
+      type: string
+      description: Hostname for sonarqube
+      default: sonarqube.apps.home.ocplab.com
     - name: git_revision
       type: string
       default: master
@@ -26,10 +30,6 @@ spec:
     - name: app
       type: string
       description: Either 'server' or 'client'
-    - name: sonarqube_host
-      type: string
-      description: Hostname for sonarqube
-      default: sonarqube.apps.home.ocplab.com
   tasks:
     - name: clone
       taskRef:
