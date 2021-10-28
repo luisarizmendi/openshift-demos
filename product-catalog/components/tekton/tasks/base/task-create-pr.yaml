@@ -38,7 +38,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: $(params.github-secret)
-              key: username
+              key: user
         - name: GITHUB_EMAIL
           valueFrom:
             secretKeyRef:
