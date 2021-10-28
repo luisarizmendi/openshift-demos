@@ -1,3 +1,40 @@
+
+
+## How to prepare the DEMO
+
+
+
+### Configure webhook in GitHub
+
+Open forked product-catalog-server and product-catalog-client github repos (Go to Settings > Webhook) click on Add Webhook > Add
+
+
+1) Payload URL: In the client repo you need to configure this route:
+
+```
+$ oc get -n product-catalog-cicd route client-webhook --template='http://{{.spec.host}}'
+```
+
+In the server repo you need to configure this route:
+
+```
+$ oc get -n product-catalog-cicd route server-webhook --template='http://{{.spec.host}}'
+```
+
+2) Content type: application/json
+
+3) Secret: <empty>
+
+4) Which events would you like to trigger this webhook?: "Just the push event"
+
+5) Click on Add Webhook
+
+
+
+
+
+
+
 ### Introduction
 
 This is an OpenShift demo showing how to do GitOps in a kubernetes way using tools like [ArgoCD](https://argoproj.github.io/argo-cd/) and [Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/). The demo application is a three tier application using React for the front-end with Quarkus providing APIs as the back-end. The back-end was originally written in PHP and then ported to Quarkus. The application itself is a simple product catalog:

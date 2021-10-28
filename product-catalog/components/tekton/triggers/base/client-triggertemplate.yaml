@@ -34,6 +34,8 @@ spec:
             value: $(params.git-revision)
           - name: push-to-prod
             value: "true"
+          - name: environment_gitops_path
+            value: product-catalog/environments/overlays/prod
         workspaces:
           - name: git-source
             persistentVolumeClaim:

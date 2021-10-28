@@ -22,6 +22,9 @@ spec:
       description: "Set to true if you want the pipeline to create a PR to push to prod"
       type: string
       default: "false"
+    - name: environment_gitops_path
+      type: string
+      default: product-catalog/environments/overlays/prod
   tasks:
     - name: clone
       taskRef:

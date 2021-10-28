@@ -28,6 +28,9 @@ spec:
       default: "false"
     - name: MAVEN_IMAGE
       default: image-registry.openshift-image-registry.svc:5000/openshift/java:openjdk-11-ubi8
+    - name: environment_gitops_path
+      type: string
+      default: product-catalog/environments/overlays/prod
   tasks:
     - name: clone
       taskRef:
