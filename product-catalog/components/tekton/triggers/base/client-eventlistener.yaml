@@ -9,9 +9,6 @@ spec:
   serviceAccountName: pipeline
   triggers:
     - name: client-webhook
-      interceptors:
-        - github:
-            eventTypes: ["pull_request"]
       bindings:
         - ref: github-triggerbinding
       template:

@@ -10,6 +10,6 @@ spec:
     - name: git-revision
       value: $(body.head_commit.id)
     - name: git-url
-      value: $(body.repository.url)
+      value: https://github.com/$(body.repository.full_name)
     - name: content-type
       value: $(header.Content-Type)

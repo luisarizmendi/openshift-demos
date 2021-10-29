@@ -12,13 +12,13 @@ Open forked product-catalog-server and product-catalog-client github repos (Go t
 1) Payload URL: In the client repo you need to configure this route:
 
 ```
-echo $(oc get -n product-catalog-cicd route client-webhook --template='http://{{.spec.host}}')/hooks
+echo $(oc get -n product-catalog-cicd route client-webhook --template='http://{{.spec.host}}')
 ```
 
 In the server repo you need to configure this route:
 
 ```
-echo $(oc get -n product-catalog-cicd route server-webhook --template='http://{{.spec.host}}')/hooks
+echo $(oc get -n product-catalog-cicd route server-webhook --template='http://{{.spec.host}}')
 ```
 
 2) Content type: application/json
