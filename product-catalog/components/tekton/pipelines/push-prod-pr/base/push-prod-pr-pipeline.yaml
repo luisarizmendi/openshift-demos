@@ -11,7 +11,7 @@ spec:
     - name: sonarqube_host
       type: string
       description: Hostname for sonarqube
-      default: sonarqube.apps.home.ocplab.com
+      default: sonarqube-product-catalog-cicd.apps.home.ocplab.com
     - name: git_revision
       type: string
       default: master

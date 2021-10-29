@@ -28,9 +28,8 @@ patches:
   patch: |-
     - op: replace
       path: /spec/params/0/default
-      value: sonarqube.apps.ocp.46.4.65.190.nip.io
+      value: sonarqube-product-catalog-cicd.apps.ocp.46.4.65.190.nip.io
   
-
 # patchesJson6902:
 #   - path: patch-pvc-block.yaml
 #     target:

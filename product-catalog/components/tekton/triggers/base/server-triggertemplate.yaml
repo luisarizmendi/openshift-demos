@@ -28,9 +28,9 @@ spec:
         pipelineRef:
           name: server
         params:
-          - name: git-url
+          - name: git_url
             value: $(tt.params.git_url)
-          - name: git-revision
+          - name: git_revision
             value: $(tt.params.git_revision)
           - name: MAVEN_MIRROR_URL
             value: http://nexus:8081/content/groups/public/

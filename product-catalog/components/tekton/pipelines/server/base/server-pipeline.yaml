@@ -17,7 +17,7 @@ spec:
       type: string
       default: https://github.com/luisarizmendi/product-catalog-server
     - name: MAVEN_MIRROR_URL
-      default: ""
+      default: http://nexus:8081/content/groups/public/
     - name: image_dest_url
       type: string
       description: External registry location to copy image to
