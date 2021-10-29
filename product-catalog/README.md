@@ -7,7 +7,7 @@ Both app and GitOps repos are a snapshot of the ones found in https://github.com
 
 ### 0) Fork APPs and GitOps repos and copy images to your repository
 
-You will need to introduce changes into the repos, so you need to fork them:
+You will need to introduce changes into the repos and accept Pull Requests, so you need to fork them:
 
 GitOps repo:
 
