@@ -22,7 +22,7 @@ metadata:
     eventlistener: server-post-prod
 spec:
   port:
-    targetPort: 8080
+    targetPort: http-listener
   to:
     kind: "Service"
     name: el-server-post-prod
