@@ -23,7 +23,7 @@ echo $(oc get -n product-catalog-cicd route server-webhook --template='http://{{
 
 2) Content type: application/json
 
-3) Secret: <entry any number> (Since we didn't configure any Secret for this listener)
+3) Secret: <leave it blank> (Since we didn't configure any Secret for this listener)
 
 4) Which events would you like to trigger this webhook?: "Just the push event"
 
