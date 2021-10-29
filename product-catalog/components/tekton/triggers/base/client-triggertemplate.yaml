@@ -7,10 +7,10 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   params:
-    - name: git-revision
+    - name: git_revision
       description: The git revision
       default: master
-    - name: git-url
+    - name: git_url
       description: The git repository url
     - name: content-type
       description: The Content-Type of the event
@@ -29,9 +29,9 @@ spec:
           name: client
         params:
           - name: git_url
-            value: $(params.git-url)
+            value: $(tt.params.git_url)
           - name: git_revision
-            value: $(params.git-revision)
+            value: $(tt.params.git_revision)
           - name: push-to-prod
             value: "true"
           - name: environment_gitops_path

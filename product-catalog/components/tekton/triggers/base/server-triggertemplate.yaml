@@ -7,10 +7,10 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   params:
-    - name: git-revision
+    - name: git_revision
       description: The git revision
       default: master
-    - name: git-url
+    - name: git_url
       description: The git repository url
     - name: content-type
       description: The Content-Type of the event
@@ -29,9 +29,9 @@ spec:
           name: server
         params:
           - name: git-url
-            value: $(params.git-url)
+            value: $(tt.params.git_url)
           - name: git-revision
-            value: $(params.git-revision)
+            value: $(tt.params.git_revision)
           - name: MAVEN_MIRROR_URL
             value: http://nexus:8081/content/groups/public/
           - name: push-to-prod

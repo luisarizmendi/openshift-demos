@@ -7,9 +7,9 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   params:
-    - name: git-revision
+    - name: git_revision
       value: $(body.head_commit.id)
-    - name: git-url
+    - name: git_url
       value: https://github.com/$(body.repository.full_name)
     - name: content-type
       value: $(header.Content-Type)
