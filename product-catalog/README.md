@@ -1,6 +1,6 @@
 # Product-catalog APP
 
-Both app and GitOps repos are a snapshot of the ones found in https://github.com/gnunn-gitops
+Both app and GitOps repos are a snapshot of the ones found in https://github.com/gnunn-gitops with several small changes in the CICD Pipelines and GitOps org.
 
 
 ## How to prepare the DEMO ?
