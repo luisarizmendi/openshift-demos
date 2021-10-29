@@ -92,6 +92,8 @@ In the server repo you need to configure this route:
 echo $(oc get -n product-catalog-cicd route server-webhook --template='http://{{.spec.host}}')
 ```
 
+Note: I've found that nip.io URLs are not working with GitHub webhooks.
+
 2) Content type: application/json
 
 3) Secret: leave it blank (Since we didn't configure any Secret for this listener)
