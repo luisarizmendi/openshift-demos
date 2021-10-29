@@ -1,10 +1,74 @@
+# Product-catalog APP
+
+Both app and GitOps repos are a snapshot of the ones found in https://github.com/gnunn-gitops
 
 
-## How to prepare the DEMO
+## How to prepare the DEMO ?
+
+### 0) Fork APPs and GitOps repos and copy images to your repository
+
+You will need to introduce changes into the repos, so you need to fork them:
+
+GitOps repo:
+
+https://github.com/luisarizmendi/openshift-demos
 
 
+APPs repos:
 
-### Configure webhook in GitHub
+https://github.com/luisarizmendi/product-catalog-client
+https://github.com/luisarizmendi/product-catalog-server
+
+
+The pipelines will push and create tags in your repository, so you will need to copy them into your repository:
+
+https://quay.io/repository/luisarizmendi/product-catalog-client
+https://quay.io/repository/luisarizmendi/product-catalog-server
+
+
+### 1) Deploy ArgoCD and Bitnami Sealed Secrets
+
+If you don't have them deployed, you can find a script that can help with this: 
+
+https://github.com/luisarizmendi/openshift-demos/blob/master/scripts/deploy_argo/deploy-argocd.sh
+
+
+### 2) Update your secrets and configure the "Cluster parameters"
+
+There is a directory (product-catalog/clusters) where the Cluster specific manifests should be configured (You might want to copy-paste one of the already configured directories and customize those files).
+
+For this APP you just need to prepare manifest for CICD  environment. 
+
+First change the default StorageClass (Pipelines uses RWX volumes) in file clusters/"your cluster"/overlays/cicd/patch-pvc-block.yaml
+
+Second, update the SealedSecrets. You have a script which helps with updating the secrets:
+
+https://github.com/luisarizmendi/openshift-demos/blob/master/product-catalog/scripts/sealed-secrets/update-sealed-secrets.sh
+
+Note: Remember to create first a file "env_secrets" with the right values. You will need to provide a GitHub token, a Slack Webhook (if you want to receive messages from Pipeline) and the credentials for your image repository.
+
+You can create the GitHub under Settings > Developer Settings > Personal access tokens (give it just permissions for repos)
+
+The steps to create a Slack webhook can be found here: https://api.slack.com/messaging/webhooks
+
+For the repository, you could create a Robot/ServiceAccount Token instead of giving your credentials (so you can specify which images could be accessed easily). If you use Quay.io you can do it under Account Settings > Robot Accounts (remember to give write access to the APP images). In the env_secrets file you will need to provide the docker conf.json that is created in your desktop after login into the registry. You can find an example of that file here:
+
+https://github.com/luisarizmendi/openshift-demos/blob/master/product-catalog/scripts/sealed-secrets/env_secrets-EXAMPLE
+
+
+<b>Remember to push the changes to your GitOps repo before continuing
+
+
+### 3) Deploy the APP
+
+In the bootstrap directory you will find the Application and ApplicationSet manifest to deploy the DEMO. You will need to copy-paste one of the already created directories and make changes in the files to point to the right gitops repositories and cluster directory (created in the previous step)
+
+Once done, you just need to copy paste either the ApplicationSet or all the Application manifests into OpenShift (you could just click the "+" button on the top right corner to create the new object)
+
+Check in ArgoCD how the deployment progress...
+
+
+### 4) Configure webhook in GitHub
 
 Open forked product-catalog-server and product-catalog-client github repos (Go to Settings > Webhook) click on Add Webhook > Add
 
@@ -23,7 +87,7 @@ echo $(oc get -n product-catalog-cicd route server-webhook --template='http://{{
 
 2) Content type: application/json
 
-3) Secret: <leave it blank> (Since we didn't configure any Secret for this listener)
+3) Secret: leave it blank (Since we didn't configure any Secret for this listener)
 
 4) Which events would you like to trigger this webhook?: "Just the push event"
 
@@ -32,8 +96,8 @@ echo $(oc get -n product-catalog-cicd route server-webhook --template='http://{{
 
 
 
-
-
+## About these repos 
+(copy from https://github.com/gnunn-gitops)
 
 ### Introduction
 

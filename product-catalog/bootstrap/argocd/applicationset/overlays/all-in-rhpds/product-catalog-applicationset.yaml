@@ -14,31 +14,31 @@ spec:
           url: https://kubernetes.default.svc
           values:
             name: product-catalog-dev
-            path: environments/overlays/dev
+            path: product-catalog/environments/overlays/dev
             namespace: product-catalog-dev
         - cluster: local
           url: https://kubernetes.default.svc
           values:
             name: product-catalog-test
-            path: environments/overlays/test
+            path: product-catalog/environments/overlays/test
             namespace: product-catalog-test
         - cluster: local
           url: https://kubernetes.default.svc
           values:
             name: product-catalog-prod
-            path: clusters/rhpds.cluster/overlays/prod
+            path: product-catalog/environments/overlays/prod
             namespace: product-catalog-prod
         - cluster: local
           url: https://kubernetes.default.svc
           values:
             name: product-catalog-cicd
-            path: clusters/rhpds.cluster/overlays/cicd
+            path: product-catalog/clusters/rhpds.cluster/overlays/cicd
             namespace: product-catalog-cicd
         - cluster: local
           url: https://kubernetes.default.svc
           values:
             name: product-catalog-monitor
-            path: environments/overlays/monitor
+            path: product-catalog/environments/overlays/monitor
             namespace: product-catalog-monitor
   template:
     metadata:

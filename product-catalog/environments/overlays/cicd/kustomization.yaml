@@ -8,6 +8,7 @@ resources:
 # Sonarqube from https://github.com/redhat-cop/gitops-catalog
 - ../../../components/sonarqube8/overlays/plugins
 # Tekton
+- pipeline-rolebinding.yaml
 - pipeline-privileged.yaml
 - ../../../components/tekton/pipelines-operator
 - ../../../components/tekton/tasks/base
