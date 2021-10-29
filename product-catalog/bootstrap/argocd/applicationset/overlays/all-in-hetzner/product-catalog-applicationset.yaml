@@ -64,3 +64,16 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{values.namespace}}'
+      ignoreDifferences:
+      - group: apps
+        kind: Deployment
+        jsonPointers:
+        - /spec/replicas
+      - group: route.openshift.io
+        kind: Route
+        jsonPointers:
+        - /status
+      - group: image.openshift.io
+        kind: ImageStream
+        jsonPointers:
+        - /spec/tags
