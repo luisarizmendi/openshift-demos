@@ -13,7 +13,6 @@ resources:
 #     files:
 #       - secrets/.dockerconfigjson
 
-- pipeline-rolebinding.yaml
 - docker-sealed-secret.yaml
 - github-sealed-secret.yaml
 - slack-deployments-webhook-sealed-secret.yaml
