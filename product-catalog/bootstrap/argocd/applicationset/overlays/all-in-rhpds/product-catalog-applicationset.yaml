@@ -65,6 +65,10 @@ spec:
         server: https://kubernetes.default.svc
         namespace: '{{values.namespace}}'
       ignoreDifferences:
+      - group: tekton.dev
+        kind: PipelineRun
+        jsonPointers:
+        - /
       - group: apps
         kind: Deployment
         jsonPointers:
