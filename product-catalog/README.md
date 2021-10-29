@@ -65,9 +65,14 @@ Finally, you might want to change the domain part of the url inside the kustomiz
 
 In the bootstrap directory you will find the Application and ApplicationSet manifest to deploy the DEMO. You will need to copy-paste one of the already created directories and make changes in the files to point to the right gitops repositories and cluster directory (created in the previous step)
 
-Once done, you just need to copy paste either the ApplicationSet or all the Application manifests into OpenShift (you could just click the "+" button on the top right corner to create the new object)
 
-Check in ArgoCD how the deployment progress...
+<b>It's better to create an App project in ArgoCD for each demo, so create one named product-catalog in this case.</b> You can do it just creating this manifest into OpenShift (you could just click the "+" button on the top right corner to create the new object): 
+
+https://github.com/luisarizmendi/openshift-demos/blob/master/product-catalog/bootstrap/argocd/appproject.yaml
+
+Once done, you just need to copy paste either the ApplicationSet or all the Application manifests (same "+" button).
+
+Check in ArgoCD how the deployment progress...if nothing appears double check that you created the App Project as explained before.
 
 
 ### 4) Configure webhook in GitHub
