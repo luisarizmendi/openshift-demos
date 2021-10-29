@@ -56,7 +56,7 @@ For the repository, you could create a Robot/ServiceAccount Token instead of giv
 https://github.com/luisarizmendi/openshift-demos/blob/master/product-catalog/scripts/sealed-secrets/env_secrets-EXAMPLE
 
 
-<b>Remember to push the changes to your GitOps repo before continuing
+<b>Remember to push the changes to your GitOps repo before continuing</b>
 
 
 ### 3) Deploy the APP
