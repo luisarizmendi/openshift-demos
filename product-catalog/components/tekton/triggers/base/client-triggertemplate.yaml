@@ -28,9 +28,9 @@ spec:
         pipelineRef:
           name: client
         params:
-          - name: git-url
+          - name: git_url
             value: $(params.git-url)
-          - name: git-revision
+          - name: git_revision
             value: $(params.git-revision)
           - name: push-to-prod
             value: "true"
