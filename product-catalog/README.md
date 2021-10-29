@@ -72,7 +72,7 @@ https://github.com/luisarizmendi/openshift-demos/blob/master/product-catalog/boo
 
 Once done, you just need to copy paste either the ApplicationSet or all the Application manifests (same "+" button).
 
-Check in ArgoCD how the deployment progress...if nothing appears double check that you created the App Project as explained before.
+Check in ArgoCD how the deployment progress...if nothing appears double check that you created the App Project as explained before (if you don't want to configure any App project, you can just change the project name from "product-catalog" to "default" in the AppliationSet and Appliation manifests).
 
 
 ### 4) Configure webhook in GitHub
