@@ -56,6 +56,8 @@ For the repository, you could create a Robot/ServiceAccount Token instead of giv
 https://github.com/luisarizmendi/openshift-demos/blob/master/product-catalog/scripts/sealed-secrets/env_secrets-EXAMPLE
 
 
+Finally, you might want to change the domain part of the url inside the kustomization.yaml (in "patches" section), it's just for a message in the Pull Request but it's nice to have it pointing to the right URL...
+
 <b>Remember to push the changes to your GitOps repo before continuing</b>
 
 

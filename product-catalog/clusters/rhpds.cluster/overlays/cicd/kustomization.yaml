@@ -28,7 +28,7 @@ patches:
   patch: |-
     - op: replace
       path: /spec/params/0/default
-      value: sonarqube-product-catalog-cicd.apps.rhpds.com
+      value: sonarqube-product-catalog-cicd.apps.cluster-0fb0.0fb0.sandbox633.opentlc.com
 
 
 # patchesJson6902:
