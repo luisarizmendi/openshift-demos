@@ -12,18 +12,18 @@ Open forked product-catalog-server and product-catalog-client github repos (Go t
 1) Payload URL: In the client repo you need to configure this route:
 
 ```
-$ oc get -n product-catalog-cicd route client-webhook --template='http://{{.spec.host}}'
+echo $(oc get -n product-catalog-cicd route client-webhook --template='http://{{.spec.host}}')/hooks
 ```
 
 In the server repo you need to configure this route:
 
 ```
-$ oc get -n product-catalog-cicd route server-webhook --template='http://{{.spec.host}}'
+echo $(oc get -n product-catalog-cicd route server-webhook --template='http://{{.spec.host}}')/hooks
 ```
 
 2) Content type: application/json
 
-3) Secret: <empty>
+3) Secret: <entry any number> (Since we didn't configure any Secret for this listener)
 
 4) Which events would you like to trigger this webhook?: "Just the push event"
 
