@@ -14,7 +14,8 @@ resources:
   
 images:
 - name: quay.io/luisarizmendi/product-catalog-client
-  newTag: prod
+  newName: quay.io/luisarizmendi/product-catalog-client
+  newTag: 49c1a5c-2068611703
 - name: quay.io/luisarizmendi/product-catalog-server
   newName: quay.io/luisarizmendi/product-catalog-server
   newTag: 813e347-3928055513
