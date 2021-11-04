@@ -7,11 +7,11 @@
       argocd.argoproj.io/sync-options: Prune=false
   spec:
     pipelineRef:
-      name: build-images
+      name: build-base-images
     workspaces:
     - name: config
       configMap:
-        name: environment
+        name: pipeline-config
     - name: github-secret
       secret:
         secretName: github
@@ -27,7 +27,7 @@
       #       requests:
       #         storage: 1Gi
       persistentVolumeClaim:
-        claimName: build-images-gitrepos
+        claimName: build-base-images-gitrepos
     params:
     - name: PATH_CONTEXT
       value: tekton/images/bumpversiontask

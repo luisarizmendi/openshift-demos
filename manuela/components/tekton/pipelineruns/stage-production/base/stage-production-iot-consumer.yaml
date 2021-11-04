@@ -1,13 +1,20 @@
   apiVersion: tekton.dev/v1beta1
   kind: PipelineRun
   metadata:
-    generateName: build-image-httpd-ionic-
+    generateName: stage-production-
     annotations:
       argocd.argoproj.io/compare-options: IgnoreExtraneous
       argocd.argoproj.io/sync-options: Prune=false
   spec:
     pipelineRef:
-      name: build-base-images
+      name: stage-production
+    params:
+    - name: component
+      value: iot-consumer
+    - name: SOURCE_IMAGE
+      value: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-consumer
+    - name: CONFIGMAP_PREFIX
+      value: IOT_consumer
     workspaces:
     - name: config
       configMap:
@@ -27,9 +34,4 @@
       #       requests:
       #         storage: 1Gi
       persistentVolumeClaim:
-        claimName: build-base-images-gitrepos
-    params:
-    - name: PATH_CONTEXT
-      value: tekton/images/httpd-ionic
-    - name: OUTPUT_IMAGE_CONFIGMAPKEY
-      value: HTTPD_IONIC_REMOTE_IMAGE
+        claimName: iot-consumer-gitrepos
