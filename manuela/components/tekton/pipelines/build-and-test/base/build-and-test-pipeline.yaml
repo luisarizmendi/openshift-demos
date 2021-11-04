@@ -265,14 +265,24 @@ spec:
     # - name: OPENSHIFT_IMAGESTREAM
     #   value: messaging
 
+#  - name: trigger-staging
+#    taskRef: 
+#      name: openshift-instantiate-template
+#    runAfter:
+#    - test-all
+#    params:
+#    - name: TEMPLATE
+#      value: stage-production-pipelinerun
+#    - name: PARAMS
+#      value: -p TAG=$(tasks.bump-build-version.results.image-tag) -p CONFIGMAP_PREFIX=$(params.CONFIGMAP_PREFIX) -p SOURCE_IMAGE=$(params.LOCAL_IMAGE) -p COMPONENT_NAME=$(params.COMPONENT_NAME)
+  
   - name: trigger-staging
     taskRef: 
-      name: openshift-instantiate-template
+      name: tkn
+      kind: Task
     runAfter:
     - test-all
     params:
-    - name: TEMPLATE
-      value: stage-production-pipelinerun
-    - name: PARAMS
-      value: -p TAG=$(tasks.bump-build-version.results.image-tag) -p CONFIGMAP_PREFIX=$(params.CONFIGMAP_PREFIX) -p SOURCE_IMAGE=$(params.LOCAL_IMAGE) -p COMPONENT_NAME=$(params.COMPONENT_NAME)
-  
+      - name: commands
+        value: |
+          tkn pipeline start stage-production --prefix-name $(params.COMPONENT_NAME)  -p TAG=$(tasks.bump-build-version.results.image-tag) -p CONFIGMAP_PREFIX=$(params.CONFIGMAP_PREFIX) -p SOURCE_IMAGE=$(params.LOCAL_IMAGE) -p COMPONENT_NAME=$(params.COMPONENT_NAME) -w name=config,configMap=environment -w name=github-secret,secret=github -w name=argocd-env-secret,secret=argocd-env -w name=quay-secret,secret=quay-build-secret -w name=gitrepos,claimName=stage-production-gitrepos
