@@ -34,4 +34,4 @@
       #       requests:
       #         storage: 1Gi
       persistentVolumeClaim:
-        claimName: stage-production-gitrepos
+        claimName: iot-frontend-gitrepos
