@@ -5,29 +5,33 @@ metadata:
 data:
   GIT_EMAIL: "manuela-list@redhat.com"
   GIT_USERNAME: "Manuela Team"
-  GIT_DEV_REPO_URL: https://github.com/luisarizmendi/manuela-app.git
   GIT_OPS_REPO_TEST_URL: https://github.com/luisarizmendi/openshift-demos.git
   GIT_OPS_REPO_PROD_URL: https://github.com/luisarizmendi/openshift-demos.git
+  IOT_CONSUMER_GIT_DEV_REPO_URL: https://github.com/luisarizmendi/manuela-iot-consumer.git
   IOT_CONSUMER_REMOTE_IMAGE: quay.io/luisarizmendi/iot-consumer
   IOT_CONSUMER_YAML_PATH: images.(name==iot-consumer).newTag
   IOT_CONSUMER_TEST_KUSTOMIZATION_PATH: manuela/environments/overlays/test/kustomization.yaml
   IOT_CONSUMER_PROD_KUSTOMIZATION_PATH: manuela/environments/overlays/prod/iot-consumer/kustomization.yaml
   IOT_CONSUMER_PROD_IMAGESTREAM_PATH: manuela/environments/overlays/prod/iot-consumer/iot-consumer-is.yaml
+  IOT_FRONTEND_GIT_DEV_REPO_URL: https://github.com/luisarizmendi/manuela-iot-frontend.git
   IOT_FRONTEND_REMOTE_IMAGE: quay.io/luisarizmendi/iot-frontend
   IOT_FRONTEND_YAML_PATH: images.(name==iot-frontend).newTag
   IOT_FRONTEND_TEST_KUSTOMIZATION_PATH: manuela/environments/overlays/test/kustomization.yaml
   IOT_FRONTEND_PROD_KUSTOMIZATION_PATH: manuela/environments/overlays/prod/iot-frontend/kustomization.yaml
   IOT_FRONTEND_PROD_IMAGESTREAM_PATH: manuela/environments/overlays/prod/iot-frontend/iot-frontend-is.yaml
+  IOT_SWSENSOR_GIT_DEV_REPO_URL: https://github.com/luisarizmendi/manuela-iot-software-sensor.git
   IOT_SWSENSOR_REMOTE_IMAGE: quay.io/luisarizmendi/iot-software-sensor
   IOT_SWSENSOR_YAML_PATH: images.(name==iot-software-sensor).newTag
   IOT_SWSENSOR_TEST_KUSTOMIZATION_PATH: manuela/environments/overlays/test/kustomization.yaml
   IOT_SWSENSOR_PROD_KUSTOMIZATION_PATH: manuela/environments/overlays/prod/iot-software-sensor/kustomization.yaml
   IOT_SWSENSOR_PROD_IMAGESTREAM_PATH: manuela/environments/overlays/prod/iot-software-sensor/iot-software-sensor-is.yaml
+  IOT_ANOMALY__GIT_DEV_REPO_URL: https://github.com/luisarizmendi/manuela-iot-anomaly-detection.git
   IOT_ANOMALY_REMOTE_IMAGE: quay.io/luisarizmendi/iot-anomaly-detection
   IOT_ANOMALY_YAML_PATH: images.(name==iot-anomaly-detection).newTag
   IOT_ANOMALY_TEST_KUSTOMIZATION_PATH: manuela/environments/overlays/test/kustomization.yaml
   IOT_ANOMALY_PROD_KUSTOMIZATION_PATH: manuela/environments/overlays/prod/iot-anomaly-detection/kustomization.yaml
   IOT_ANOMALY_PROD_IMAGESTREAM_PATH: manuela/environments/overlays/prod/iot-anomaly-detection/iot-anomaly-detection-is.yaml
+  BASE_IMAGES_GIT_DEV_REPO_URL: https://github.com/luisarizmendi/manuela-support.git
   BUMPVERSION_REMOTE_IMAGE: quay.io/luisarizmendi/bumpversion
   HTTPD_IONIC_REMOTE_IMAGE: quay.io/luisarizmendi/httpd-ionic
 

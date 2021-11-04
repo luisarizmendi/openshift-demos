@@ -31,7 +31,7 @@ spec:
       workspace: config
     params:
     - name: url_configmapkey
-      value: GIT_DEV_REPO_URL
+      value: $(params.CONFIGMAP_PREFIX)_GIT_DEV_REPO_URL
     - name: revision
       value: $(params.DEV_REVISION)
     - name: subdirectory
