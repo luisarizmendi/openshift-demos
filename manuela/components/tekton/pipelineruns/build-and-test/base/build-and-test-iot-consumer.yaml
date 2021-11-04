@@ -37,7 +37,7 @@ spec:
   - name: LOCAL_IMAGE
     value: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-consumer
   - name: PATH_CONTEXT
-    value: components/iot-consumer
+    value: .
   - name: COMPONENT_NAME
     value: iot-consumer
   - name: CONFIGMAP_PREFIX

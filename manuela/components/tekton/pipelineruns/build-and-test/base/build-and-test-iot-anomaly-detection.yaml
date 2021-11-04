@@ -37,7 +37,7 @@ spec:
   - name: LOCAL_IMAGE
     value: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-anomaly-detection
   - name: PATH_CONTEXT
-    value: components/iot-anomaly-detection
+    value: .
   - name: COMPONENT_NAME
     value: iot-anomaly
   - name: CONFIGMAP_PREFIX

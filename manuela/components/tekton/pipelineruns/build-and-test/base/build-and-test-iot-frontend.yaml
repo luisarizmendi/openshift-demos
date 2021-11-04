@@ -37,7 +37,7 @@ spec:
   - name: LOCAL_IMAGE
     value: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-frontend
   - name: PATH_CONTEXT
-    value: components/iot-frontend
+    value: .
   - name: COMPONENT_NAME
     value: iot-frontend
   - name: CONFIGMAP_PREFIX

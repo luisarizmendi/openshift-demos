@@ -20,7 +20,7 @@ spec:
     default: image-registry.openshift-image-registry.svc:5000/manuela-test/messaging
   - name: PATH_CONTEXT
     type: string
-    default: components/iot-consumer
+    default: .
   - name: COMPONENT_NAME
     type: string
     default: iot-consumer
