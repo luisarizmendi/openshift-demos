@@ -25,3 +25,10 @@ spec:
     importPolicy: {}
     referencePolicy:
       type: Local
+  - name: 0.3.1-12
+    from:
+      kind: DockerImage
+      name: quay.io/luisarizmendi/iot-frontend:0.3.1-12
+    importPolicy: {}
+    referencePolicy:
+      type: Local
