@@ -276,14 +276,14 @@ spec:
 #    - name: PARAMS
 #      value: -p TAG=$(tasks.bump-build-version.results.image-tag) -p CONFIGMAP_PREFIX=$(params.CONFIGMAP_PREFIX) -p SOURCE_IMAGE=$(params.LOCAL_IMAGE) -p COMPONENT_NAME=$(params.COMPONENT_NAME)
   
-#  - name: trigger-staging
-#    taskRef: 
-#      name: tkn
-#      kind: Task
-#    runAfter:
-#    - test-all
-#    params:
-#      - name: commands
-#        value: |
-#          tkn pipeline start stage-production --prefix-name $(params.COMPONENT_NAME) -p component=$(params.COMPONENT_NAME) -p SOURCE_IMAGE=$(params.LOCAL_IMAGE) -p CONFIGMAP_PREFIX=$(params.CONFIGMAP_PREFIX)  -w name=config,config=pipeline-config -w name=github-secret,secret=github -w name=quay-secret,secret=quay-build-secret -w name=gitrepos,claimName=stage-production-gitrepos
-#          tkn pipeline start stage-production --prefix-name $(params.COMPONENT_NAME) -p component=$(params.COMPONENT_NAME) -p SOURCE_IMAGE=$(params.LOCAL_IMAGE) -p CONFIGMAP_PREFIX=$(params.CONFIGMAP_PREFIX)  -w name=config,config=pipeline-config -w name=github-secret,secret=github -w name=quay-secret,secret=quay-build-secret -w name=gitrepos,claimName=stage-production-gitrepos
+  - name: trigger-staging
+    taskRef: 
+      name: tkn
+      kind: Task
+    runAfter:
+    - test-all
+    params:
+      - name: commands
+        value: |
+          echo "tkn pipeline start stage-production --prefix-name $(params.COMPONENT_NAME) -p component=$(params.COMPONENT_NAME) -p SOURCE_IMAGE=$(params.LOCAL_IMAGE) -p CONFIGMAP_PREFIX=$(params.CONFIGMAP_PREFIX)  -w name=config,config=pipeline-config -w name=github-secret,secret=github -w name=quay-secret,secret=quay-build-secret -w name=gitrepos,claimName=stage-production-gitrepos"
+          tkn pipeline start stage-production --prefix-name $(params.COMPONENT_NAME) -p component=$(params.COMPONENT_NAME) -p SOURCE_IMAGE=$(params.LOCAL_IMAGE) -p CONFIGMAP_PREFIX=$(params.CONFIGMAP_PREFIX)  -w name=config,config=pipeline-config -w name=github-secret,secret=github -w name=quay-secret,secret=quay-build-secret -w name=gitrepos,claimName=stage-production-gitrepos
