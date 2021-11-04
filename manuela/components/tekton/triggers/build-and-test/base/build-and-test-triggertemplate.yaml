@@ -1,7 +1,7 @@
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerTemplate
 metadata:
-  name: build-and-test-triggertemplate
+  name: build-and-test-triggertemplate-consumer
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
@@ -12,34 +12,47 @@ spec:
  - apiVersion: tekton.dev/v1beta1
    kind: PipelineRun
    metadata:
-     generateName: build-and-test-
+     generateName: build-and-test-consumer-
      namespace: manuela-cicd
      labels:
        app: manuela
        tekton.dev/pipeline: build-and-test
    spec:
      params:
-       - name: PROJECT_DEV
-         value: analysis-test
-       - name: IMAGE_TAG
-         value: $(tt.params.gitid)
-       - name: git-repository
-         value: http://gitea:3000/$(tt.params.gitrepository)
-       - name: app-name
-         value: manuela
-       - name: title
-         value: "Pull-request for revision id $(tt.params.gitid)"
+        - name: S2I_BUILDER_IMAGE
+          value: registry.access.redhat.com/rhscl/nodejs-10-rhel7
+        - name: LOCAL_IMAGE
+          value: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-consumer
+        - name: PATH_CONTEXT
+          value: .
+        - name: COMPONENT_NAME
+          value: iot-consumer
+        - name: CONFIGMAP_PREFIX
+          value: IOT_CONSUMER
      pipelineRef:
-       name: analysis-build-pipeline
+       name: build-and-test
      serviceAccountName: pipeline
      timeout: 1h0m0s
      workspaces:
-       - name: shared-workspace
-         persistentVolumeClaim:
-           claimName: manuela-shared-workspace-build
-       - configMap:
-           name: maven-settings
-         name: maven-settings
-       - name: maven-local-repo
-         persistentVolumeClaim:
-           claimName: manuela-maven-local-repo
+        - name: config
+          configMap:
+            name: pipeline-config
+        - name: github-secret
+          secret:
+            secretName: github
+        - name: argocd-env-secret
+          secret:
+            secretName: argocd-env
+        - name: build-artifacts
+          persistentVolumeClaim:
+            claimName: build-artifacts
+        - name: gitrepos
+          # volumeClaimTemplate:
+          #   spec:
+          #     accessModes: 
+          #     - ReadWriteMany
+          #     resources:
+          #       requests:
+          #         storage: 1Gi
+          persistentVolumeClaim:
+            claimName: iot-consumer-gitrepos
