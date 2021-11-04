@@ -20,13 +20,13 @@ images:
   #  newTag: test-0.3.2-1
 
   newName: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-consumer
-  newTag: 0.3.1-4
+  newTag: 0.3.1-5
 - name: iot-software-sensor #- name: iot-software-sensor
   newName: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-software-sensor
-  newTag: 0.3.1-4
+  newTag: 0.3.1-5
 - name: iot-frontend #- name: iot-frontend
   newName: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-frontend
-  newTag: 0.3.1-4
+  newTag: 0.3.1-5
 - name: iot-anomaly-detection #- name: iot-anomaly-detection
   newName: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-anomaly-detection
-  newTag: 0.3.1-4
+  newTag: 0.3.1-5
