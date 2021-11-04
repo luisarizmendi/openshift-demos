@@ -237,7 +237,7 @@ spec:
     taskRef:
       name: s2i
     runAfter:
-    - bump-build-version-iot-swsensor
+    - bump-build-version-iot-software-sensor
     workspaces:
     - name: gitrepos
       workspace: gitrepos
