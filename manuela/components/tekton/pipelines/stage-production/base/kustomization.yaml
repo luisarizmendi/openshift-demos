@@ -3,4 +3,3 @@ kind: Kustomization
 
 resources:
 - stage-production-pipeline.yaml
-- stage-production-gitrepos.yaml
