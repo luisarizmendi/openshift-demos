@@ -46,4 +46,7 @@ spec:
     kind: OperatorGroup
     jsonPointers:
     - /metadata/annotations/olm.providedAPIs
-
+  - group: tekton.dev
+    kind: PipelineRun
+    jsonPointers:
+    - /

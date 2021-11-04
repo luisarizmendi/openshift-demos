@@ -285,4 +285,4 @@ spec:
     params:
       - name: commands
         value: |
-          tkn pipeline start stage-production --prefix-name $(params.COMPONENT_NAME)  -p TAG=$(tasks.bump-build-version.results.image-tag) -p CONFIGMAP_PREFIX=$(params.CONFIGMAP_PREFIX) -p SOURCE_IMAGE=$(params.LOCAL_IMAGE) -p COMPONENT_NAME=$(params.COMPONENT_NAME) -w name=config,configMap=environment -w name=github-secret,secret=github -w name=argocd-env-secret,secret=argocd-env -w name=quay-secret,secret=quay-build-secret -w name=gitrepos,claimName=stage-production-gitrepos
+          tkn pipeline start stage-production --prefix-name $(params.COMPONENT_NAME) -p component=$(params.COMPONENT_NAME) -p SOURCE_IMAGE=$(params.LOCAL_IMAGE) -p CONFIGMAP_PREFIX=$(params.CONFIGMAP_PREFIX)  -w name=config,configMap=environment -w name=github-secret,secret=github -w name=argocd-env-secret,secret=argocd-env -w name=quay-secret,secret=quay-build-secret -w name=gitrepos,claimName=stage-production-gitrepos
