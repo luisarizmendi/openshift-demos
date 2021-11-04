@@ -525,6 +525,10 @@ spec:
     runAfter:
     - push-dev-tag
     - commit-ops
+    - copy-image-to-remote-registry-iot-frontend
+    - copy-image-to-remote-registry-iot-consumer
+    - copy-image-to-remote-registry-iot-software-sensor
+    - copy-image-to-remote-registry-iot-anomaly
     workspaces:
     - name: gitrepos
       workspace: gitrepos
