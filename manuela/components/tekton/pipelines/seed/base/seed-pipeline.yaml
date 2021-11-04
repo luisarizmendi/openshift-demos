@@ -14,7 +14,7 @@ spec:
   - name: build-artifacts
 
   tasks:
-  - name: git-clone-dev
+  - name: git-clone-dev-frontend
     taskRef:
       name: git-clone-with-tags
     workspaces:
@@ -24,7 +24,62 @@ spec:
       workspace: config
     params:
     - name: url_configmapkey
-      value: $(params.CONFIGMAP_PREFIX)_GIT_DEV_REPO_URL
+      value: IOT_FRONTEND_GIT_DEV_REPO_URL
+    - name: revision
+      value: master
+    - name: subdirectory
+      value: dev
+    - name: deleteExisting
+      value: "true"
+
+
+  - name: git-clone-dev-consumer
+    taskRef:
+      name: git-clone-with-tags
+    workspaces:
+    - name: gitrepos
+      workspace: gitrepos
+    - name: config
+      workspace: config
+    params:
+    - name: url_configmapkey
+      value: IOT_CONSUMER_GIT_DEV_REPO_URL
+    - name: revision
+      value: master
+    - name: subdirectory
+      value: dev
+    - name: deleteExisting
+      value: "true"
+
+  - name: git-clone-dev-swsensor
+    taskRef:
+      name: git-clone-with-tags
+    workspaces:
+    - name: gitrepos
+      workspace: gitrepos
+    - name: config
+      workspace: config
+    params:
+    - name: url_configmapkey
+      value: IOT_SWSENSOR_GIT_DEV_REPO_URL
+    - name: revision
+      value: master
+    - name: subdirectory
+      value: dev
+    - name: deleteExisting
+      value: "true"
+
+  - name: git-clone-dev-anomaly-detector
+    taskRef:
+      name: git-clone-with-tags
+    workspaces:
+    - name: gitrepos
+      workspace: gitrepos
+    - name: config
+      workspace: config
+    params:
+    - name: url_configmapkey
+      value: IOT_ANOMALY_GIT_DEV_REPO_URL
     - name: revision
       value: master
     - name: subdirectory
@@ -54,7 +109,7 @@ spec:
     taskRef:
       name: bumpversion
     runAfter:
-    - git-clone-dev
+    - git-clone-dev-frontend
     - git-clone-ops
     workspaces:
     - name: gitrepos
@@ -69,7 +124,7 @@ spec:
     taskRef:
       name: bumpversion
     runAfter:
-    - git-clone-dev
+    - git-clone-dev-consumer
     - git-clone-ops
     workspaces:
     - name: gitrepos
@@ -84,7 +139,7 @@ spec:
     taskRef:
       name: bumpversion
     runAfter:
-    - git-clone-dev
+    - git-clone-dev-anomaly
     - git-clone-ops
     workspaces:
     - name: gitrepos
@@ -99,7 +154,7 @@ spec:
     taskRef:
       name: bumpversion
     runAfter:
-    - git-clone-dev
+    - git-clone-dev-swsensor
     - git-clone-ops
     workspaces:
     - name: gitrepos
