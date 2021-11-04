@@ -25,7 +25,7 @@ data:
   IOT_SWSENSOR_TEST_KUSTOMIZATION_PATH: manuela/environments/overlays/test/kustomization.yaml
   IOT_SWSENSOR_PROD_KUSTOMIZATION_PATH: manuela/environments/overlays/prod/iot-software-sensor/kustomization.yaml
   IOT_SWSENSOR_PROD_IMAGESTREAM_PATH: manuela/environments/overlays/prod/iot-software-sensor/iot-software-sensor-is.yaml
-  IOT_ANOMALY__GIT_DEV_REPO_URL: https://github.com/luisarizmendi/manuela-iot-anomaly-detection.git
+  IOT_ANOMALY_GIT_DEV_REPO_URL: https://github.com/luisarizmendi/manuela-iot-anomaly-detection.git
   IOT_ANOMALY_REMOTE_IMAGE: quay.io/luisarizmendi/iot-anomaly-detection
   IOT_ANOMALY_YAML_PATH: images.(name==iot-anomaly-detection).newTag
   IOT_ANOMALY_TEST_KUSTOMIZATION_PATH: manuela/environments/overlays/test/kustomization.yaml
