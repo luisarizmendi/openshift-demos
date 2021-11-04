@@ -168,6 +168,8 @@ spec:
   - name: s2i-build-iot-frontend
     taskRef:
       name: s2i
+    runAfter:
+    - bump-build-version-iot-frontend
     workspaces:
     - name: gitrepos
       workspace: gitrepos
@@ -190,6 +192,8 @@ spec:
   - name: s2i-build-iot-consumer
     taskRef:
       name: s2i
+    runAfter:
+    - bump-build-version-iot-consumer
     workspaces:
     - name: gitrepos
       workspace: gitrepos
@@ -210,6 +214,8 @@ spec:
   - name: s2i-build-iot-anomaly
     taskRef:
       name: s2i
+    runAfter:
+    - bump-build-version-iot-anomaly
     workspaces:
     - name: gitrepos
       workspace: gitrepos
@@ -230,6 +236,8 @@ spec:
   - name: s2i-build-iot-software-sensor
     taskRef:
       name: s2i
+    runAfter:
+    - bump-build-version-iot-swsensor
     workspaces:
     - name: gitrepos
       workspace: gitrepos
