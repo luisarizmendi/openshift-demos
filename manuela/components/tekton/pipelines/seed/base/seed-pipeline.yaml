@@ -28,7 +28,7 @@ spec:
     - name: revision
       value: master
     - name: subdirectory
-      value: dev
+      value: dev/iot-frontend
     - name: deleteExisting
       value: "true"
 
@@ -47,7 +47,7 @@ spec:
     - name: revision
       value: master
     - name: subdirectory
-      value: dev
+      value: dev/iot-consumer
     - name: deleteExisting
       value: "true"
 
@@ -65,7 +65,7 @@ spec:
     - name: revision
       value: master
     - name: subdirectory
-      value: dev
+      value: dev/iot-software-sensor
     - name: deleteExisting
       value: "true"
 
@@ -83,7 +83,7 @@ spec:
     - name: revision
       value: master
     - name: subdirectory
-      value: dev
+      value: dev/iot-anomaly-detection
     - name: deleteExisting
       value: "true"
 
