@@ -284,4 +284,5 @@ spec:
     - test-all
     params:
       - name: ARGS
-        value: pipeline start stage-production --prefix-name $(params.COMPONENT_NAME) -p component=$(params.COMPONENT_NAME) -p SOURCE_IMAGE=$(params.LOCAL_IMAGE) -p CONFIGMAP_PREFIX=$(params.CONFIGMAP_PREFIX)  -w name=config,config=pipeline-config -w name=github-secret,secret=github -w name=quay-secret,secret=quay-build-secret -w name=gitrepos,claimName=$(params.COMPONENT_NAME)-gitrepos
+        value: 
+          - "pipeline start stage-production --prefix-name $(params.COMPONENT_NAME) -p component=$(params.COMPONENT_NAME) -p SOURCE_IMAGE=$(params.LOCAL_IMAGE) -p CONFIGMAP_PREFIX=$(params.CONFIGMAP_PREFIX)  -w name=config,config=pipeline-config -w name=github-secret,secret=github -w name=quay-secret,secret=quay-build-secret -w name=gitrepos,claimName=$(params.COMPONENT_NAME)-gitrepos"
