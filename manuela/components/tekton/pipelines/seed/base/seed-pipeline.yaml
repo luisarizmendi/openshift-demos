@@ -139,7 +139,7 @@ spec:
     taskRef:
       name: bumpversion
     runAfter:
-    - git-clone-dev-anomaly
+    - git-clone-dev-anomaly-detector
     - git-clone-ops
     workspaces:
     - name: gitrepos
