@@ -573,7 +573,10 @@ spec:
     taskRef:
       name: github-push
     runAfter:
-    - push-dev-tag
+    - push-dev-tag-iot-frontend
+    - push-dev-tag-iot-consumer
+    - push-dev-tag-iot-software-sensor
+    - push-dev-tag-iot-anomaly
     - commit-ops
     - copy-image-to-remote-registry-iot-frontend
     - copy-image-to-remote-registry-iot-consumer
