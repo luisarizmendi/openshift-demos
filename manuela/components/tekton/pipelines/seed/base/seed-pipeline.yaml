@@ -288,9 +288,9 @@ spec:
       value: dev/iot-consumer
 
 
-  - name: push-dev-tag
+  - name: push-dev-tag-iot-anomaly
     taskRef:
-      name: github-push-iot-anomaly
+      name: github-push
     runAfter:
     - s2i-build-iot-anomaly
     workspaces:
