@@ -275,7 +275,7 @@ spec:
       workspace: github-secret
     params:
     - name: PUSH_FLAGS
-      value: origin $(tasks.bump-build-version-iot-frontend.results.git-tag) $(tasks.bump-build-version-iot-consumer.results.git-tag) $(tasks.bump-build-version-iot-anomaly.results.git-tag) $(tasks.bump-build-version-iot-software-sensor.results.git-tag)
+      value: origin $(tasks.bump-build-version-iot-frontend.results.git-tag) 
     - name: subdirectory
       value: dev/iot-frontend
 
@@ -291,7 +291,7 @@ spec:
       workspace: github-secret
     params:
     - name: PUSH_FLAGS
-      value: origin $(tasks.bump-build-version-iot-frontend.results.git-tag) $(tasks.bump-build-version-iot-consumer.results.git-tag) $(tasks.bump-build-version-iot-anomaly.results.git-tag) $(tasks.bump-build-version-iot-software-sensor.results.git-tag)
+      value: origin $(tasks.bump-build-version-iot-consumer.results.git-tag) 
     - name: subdirectory
       value: dev/iot-consumer
 
@@ -308,7 +308,7 @@ spec:
       workspace: github-secret
     params:
     - name: PUSH_FLAGS
-      value: origin $(tasks.bump-build-version-iot-frontend.results.git-tag) $(tasks.bump-build-version-iot-consumer.results.git-tag) $(tasks.bump-build-version-iot-anomaly.results.git-tag) $(tasks.bump-build-version-iot-software-sensor.results.git-tag)
+      value: origin  $(tasks.bump-build-version-iot-anomaly.results.git-tag)
     - name: subdirectory
       value: dev/iot-anomaly
 
@@ -325,7 +325,7 @@ spec:
       workspace: github-secret
     params:
     - name: PUSH_FLAGS
-      value: origin $(tasks.bump-build-version-iot-frontend.results.git-tag) $(tasks.bump-build-version-iot-consumer.results.git-tag) $(tasks.bump-build-version-iot-anomaly.results.git-tag) $(tasks.bump-build-version-iot-software-sensor.results.git-tag)
+      value: origin $(tasks.bump-build-version-iot-software-sensor.results.git-tag)
     - name: subdirectory
       value: dev/iot-software-sensor
 
