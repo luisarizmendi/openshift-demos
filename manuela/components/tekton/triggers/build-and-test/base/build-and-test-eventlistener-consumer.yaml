@@ -13,3 +13,19 @@ spec:
        - ref: build-and-test-triggerbinding
      template:
       ref: build-and-test-triggertemplate-consumer
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: build-and-test-consumer-webhook
+  labels:
+    app.kubernetes.io/managed-by: EventListener
+    app.kubernetes.io/part-of: Triggers
+    eventlistener: build-and-test-consumer-listener-interceptor
+spec:
+  port:
+    targetPort: http-listener
+  to:
+    kind: "Service"
+    name: el-build-and-test-consumer-listener-interceptor
+    weight: 100
