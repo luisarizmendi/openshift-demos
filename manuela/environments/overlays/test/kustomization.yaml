@@ -20,7 +20,7 @@ images:
   #  newTag: test-0.3.2-1
 
   newName: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-consumer
-  newTag: 0.3.1-5
+  newTag: 0.3.1-6
 - name: iot-software-sensor #- name: iot-software-sensor
   newName: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-software-sensor
   newTag: 0.3.1-6
