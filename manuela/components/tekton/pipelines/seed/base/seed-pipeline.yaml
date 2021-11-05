@@ -187,7 +187,7 @@ spec:
     - name: TLSVERIFY
       value: "false"
     - name: PATH_CONTEXT
-      value: .
+      value: iot-frontend
     - name: BUILDER_IMAGE
       value: quay.io/luisarizmendi/ubi8-s2i-web-app
     - name: CHAINED_BUILD_DOCKERFILE
@@ -211,7 +211,7 @@ spec:
     - name: TLSVERIFY
       value: "false"
     - name: PATH_CONTEXT
-      value: .
+      value: iot-consumer
     - name: BUILDER_IMAGE
       value: registry.access.redhat.com/rhscl/nodejs-10-rhel7
     - name: TAG
@@ -233,7 +233,7 @@ spec:
     - name: TLSVERIFY
       value: "false"
     - name: PATH_CONTEXT
-      value: .
+      value: iot-anomaly-detection
     - name: BUILDER_IMAGE
       value: registry.access.redhat.com/rhscl/python-36-rhel7
     - name: TAG
@@ -255,7 +255,7 @@ spec:
     - name: TLSVERIFY
       value: "false"
     - name: PATH_CONTEXT
-      value: .
+      value: iot-software-sensor
     - name: BUILDER_IMAGE
       value: registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift
     - name: TAG
