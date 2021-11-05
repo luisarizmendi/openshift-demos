@@ -279,7 +279,7 @@ spec:
   - name: trigger-staging
     taskRef: 
       name: tkn
-      kind: Task
+      kind: ClusterTask
     runAfter:
     - test-all
     params:
