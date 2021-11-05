@@ -9,5 +9,5 @@ resources:
 - build-and-test-triggerbinding.yaml
 - build-and-test-triggertemplate-anomaly.yaml
 - build-and-test-triggertemplate-consumer.yaml
-- build-and-test-triggertemplate-frontend.yaml m
+- build-and-test-triggertemplate-frontend.yaml
 - build-and-test-triggertemplate-software-sensor.yaml
