@@ -11,5 +11,5 @@ resources:
 - ../../../components/tekton/triggers/build-and-test/base
 - ../../../components/tekton/shared-workspaces/base
 - ../../../components/tekton/pipelines
-- ../../../components/tekton/pipelineruns/seed/base
+#- ../../../components/tekton/pipelineruns/seed/base
 
