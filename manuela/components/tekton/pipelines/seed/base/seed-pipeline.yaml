@@ -110,7 +110,6 @@ spec:
       name: bumpversion
     runAfter:
     - git-clone-dev-frontend
-    - git-clone-ops
     workspaces:
     - name: gitrepos
       workspace: gitrepos
@@ -127,7 +126,6 @@ spec:
       name: bumpversion
     runAfter:
     - git-clone-dev-consumer
-    - git-clone-ops
     workspaces:
     - name: gitrepos
       workspace: gitrepos
@@ -144,7 +142,6 @@ spec:
       name: bumpversion
     runAfter:
     - git-clone-dev-anomaly-detector
-    - git-clone-ops
     workspaces:
     - name: gitrepos
       workspace: gitrepos
@@ -161,7 +158,6 @@ spec:
       name: bumpversion
     runAfter:
     - git-clone-dev-swsensor
-    - git-clone-ops
     workspaces:
     - name: gitrepos
       workspace: gitrepos
@@ -407,6 +403,7 @@ spec:
       name: gitops-imagetag
     runAfter:
     - git-clone-ops
+    - bump-build-version-iot-frontend
     workspaces:
     - name: gitrepos
       workspace: gitrepos
@@ -426,7 +423,8 @@ spec:
     taskRef:
       name: gitops-imagetag
     runAfter:
-    - modify-ops-test-iot-frontend
+    - git-clone-ops
+    - bump-build-version-iot-consumer
     workspaces:
     - name: gitrepos
       workspace: gitrepos
@@ -446,7 +444,8 @@ spec:
     taskRef:
       name: gitops-imagetag
     runAfter:
-    - modify-ops-test-iot-consumer
+    - git-clone-ops
+    - bump-build-version-iot-anomaly
     workspaces:
     - name: gitrepos
       workspace: gitrepos
@@ -466,7 +465,8 @@ spec:
     taskRef:
       name: gitops-imagetag
     runAfter: 
-    - modify-ops-test-iot-anomaly
+    - git-clone-ops
+    - bump-build-version-iot-software-sensor
     workspaces:
     - name: gitrepos
       workspace: gitrepos
@@ -486,7 +486,7 @@ spec:
     taskRef:
       name: gitops-imagetag
     runAfter:
-    - modify-ops-test-iot-software-sensor
+    - modify-ops-test-iot-frontend
     workspaces:
     - name: gitrepos
       workspace: gitrepos
@@ -506,7 +506,7 @@ spec:
     taskRef:
       name: gitops-imagetag
     runAfter:
-    - modify-ops-prod-iot-frontend
+    - modify-ops-test-iot-consumer
     workspaces:
     - name: gitrepos
       workspace: gitrepos
@@ -526,7 +526,7 @@ spec:
     taskRef:
       name: gitops-imagetag
     runAfter:
-    - modify-ops-prod-iot-consumer
+    - modify-ops-test-iot-anomaly
     workspaces:
     - name: gitrepos
       workspace: gitrepos
@@ -546,7 +546,7 @@ spec:
     taskRef:
       name: gitops-imagetag
     runAfter: 
-    - modify-ops-prod-iot-anomaly
+    - modify-ops-test-iot-software-sensor
     workspaces:
     - name: gitrepos
       workspace: gitrepos
