@@ -255,13 +255,60 @@ spec:
     - name: OUTPUT_IMAGE
       value: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-software-sensor
 
-  - name: push-dev-tag
+  - name: push-dev-tag-iot-frontend
     taskRef:
       name: github-push
     runAfter:
     - s2i-build-iot-frontend
+    workspaces:
+    - name: gitrepos
+      workspace: gitrepos
+    - name: github-secret
+      workspace: github-secret
+    params:
+    - name: PUSH_FLAGS
+      value: origin $(tasks.bump-build-version-iot-frontend.results.git-tag) $(tasks.bump-build-version-iot-consumer.results.git-tag) $(tasks.bump-build-version-iot-anomaly.results.git-tag) $(tasks.bump-build-version-iot-software-sensor.results.git-tag)
+    - name: subdirectory
+      value: dev/iot-frontend
+
+  - name: push-dev-tag-iot-consumer
+    taskRef:
+      name: github-push
+    runAfter:
     - s2i-build-iot-consumer
+    workspaces:
+    - name: gitrepos
+      workspace: gitrepos
+    - name: github-secret
+      workspace: github-secret
+    params:
+    - name: PUSH_FLAGS
+      value: origin $(tasks.bump-build-version-iot-frontend.results.git-tag) $(tasks.bump-build-version-iot-consumer.results.git-tag) $(tasks.bump-build-version-iot-anomaly.results.git-tag) $(tasks.bump-build-version-iot-software-sensor.results.git-tag)
+    - name: subdirectory
+      value: dev/iot-consumer
+
+
+  - name: push-dev-tag
+    taskRef:
+      name: github-push-iot-anomaly
+    runAfter:
     - s2i-build-iot-anomaly
+    workspaces:
+    - name: gitrepos
+      workspace: gitrepos
+    - name: github-secret
+      workspace: github-secret
+    params:
+    - name: PUSH_FLAGS
+      value: origin $(tasks.bump-build-version-iot-frontend.results.git-tag) $(tasks.bump-build-version-iot-consumer.results.git-tag) $(tasks.bump-build-version-iot-anomaly.results.git-tag) $(tasks.bump-build-version-iot-software-sensor.results.git-tag)
+    - name: subdirectory
+      value: dev/iot-anomaly
+
+
+  - name: push-dev-tag-iot-software-sensor
+    taskRef:
+      name: github-push
+    runAfter:
     - s2i-build-iot-software-sensor
     workspaces:
     - name: gitrepos
@@ -271,6 +318,9 @@ spec:
     params:
     - name: PUSH_FLAGS
       value: origin $(tasks.bump-build-version-iot-frontend.results.git-tag) $(tasks.bump-build-version-iot-consumer.results.git-tag) $(tasks.bump-build-version-iot-anomaly.results.git-tag) $(tasks.bump-build-version-iot-software-sensor.results.git-tag)
+    - name: subdirectory
+      value: dev/iot-software-sensor
+
 
   - name: copy-image-to-remote-registry-iot-frontend
     taskRef:
