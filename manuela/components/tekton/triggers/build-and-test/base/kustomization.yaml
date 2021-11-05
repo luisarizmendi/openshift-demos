@@ -2,6 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- build-and-test-eventlistener.yaml
+- build-and-test-eventlistener-anomaly.yaml
+- build-and-test-eventlistener-consumer.yaml
+- build-and-test-eventlistener-frontend.yaml
+- build-and-test-eventlistener-software-sensor.yaml
 - build-and-test-triggerbinding.yaml
-- build-and-test-triggertemplate.yaml
+- build-and-test-triggertemplate-anomaly.yaml
+- build-and-test-triggertemplate-consumer.yaml
+- build-and-test-triggertemplate-frontend.yaml m
+- build-and-test-triggertemplate-software-sensor.yaml

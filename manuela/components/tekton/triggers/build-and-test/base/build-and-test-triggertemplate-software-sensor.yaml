@@ -1,0 +1,58 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerTemplate
+metadata:
+  name: build-and-test-triggertemplate-software-sensor
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+ params:
+ - name: gitrepository
+ - name: gitid
+ resourcetemplates:
+ - apiVersion: tekton.dev/v1beta1
+   kind: PipelineRun
+   metadata:
+     generateName: build-and-test-software-sensor-
+     namespace: manuela-cicd
+     labels:
+       app: manuela
+       tekton.dev/pipeline: build-and-test
+   spec:
+     params:
+        - name: S2I_BUILDER_IMAGE
+          value: registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift
+        - name: LOCAL_IMAGE
+          value: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-software-sensor
+        - name: PATH_CONTEXT
+          value: .
+        - name: COMPONENT_NAME
+          value: iot-swsensor
+        - name: CONFIGMAP_PREFIX
+          value: IOT_SWSENSOR
+     pipelineRef:
+       name: build-and-test
+     serviceAccountName: pipeline
+     timeout: 1h0m0s
+     workspaces:
+        - name: config
+          configMap:
+            name: pipeline-config
+        - name: github-secret
+          secret:
+            secretName: github
+        - name: argocd-env-secret
+          secret:
+            secretName: argocd-env
+        - name: build-artifacts
+          persistentVolumeClaim:
+            claimName: build-artifacts
+        - name: gitrepos
+          # volumeClaimTemplate:
+          #   spec:
+          #     accessModes: 
+          #     - ReadWriteMany
+          #     resources:
+          #       requests:
+          #         storage: 1Gi
+          persistentVolumeClaim:
+            claimName: iot-software-sensor-gitrepos

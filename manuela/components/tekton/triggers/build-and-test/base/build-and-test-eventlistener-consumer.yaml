@@ -1,0 +1,15 @@
+
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: build-and-test-consumer-listener-interceptor
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+ serviceAccountName: pipeline
+ triggers:
+   - name: GitHub-listener
+     bindings:
+       - ref: build-and-test-triggerbinding
+     template:
+      ref: build-and-test-triggertemplate-consumer
