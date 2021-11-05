@@ -117,6 +117,8 @@ spec:
     params:
     - name: component_name
       value: iot-frontend
+    - name: subdirectory
+      value: dev/iot-frontend
     - name: version_file_path
       value: VERSION
 
@@ -132,6 +134,8 @@ spec:
     params:
     - name: component_name
       value: iot-consumer
+    - name: subdirectory
+      value: dev/iot-consumer
     - name: version_file_path
       value: VERSION
 
@@ -147,6 +151,8 @@ spec:
     params:
     - name: component_name
       value: iot-anomaly
+    - name: subdirectory
+      value: dev/iot-anomaly-detection
     - name: version_file_path
       value: VERSION
 
@@ -162,6 +168,8 @@ spec:
     params:
     - name: component_name
       value: iot-swsensor
+    - name: subdirectory
+      value: dev/iot-software-sensor
     - name: version_file_path
       value: VERSION
 
@@ -397,6 +405,8 @@ spec:
   - name: modify-ops-test-iot-frontend
     taskRef:
       name: gitops-imagetag
+    runAfter:
+    - git-clone-ops
     workspaces:
     - name: gitrepos
       workspace: gitrepos
