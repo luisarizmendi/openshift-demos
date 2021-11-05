@@ -310,7 +310,7 @@ spec:
     - name: PUSH_FLAGS
       value: origin  $(tasks.bump-build-version-iot-anomaly.results.git-tag)
     - name: subdirectory
-      value: dev/iot-anomaly
+      value: dev/iot-anomaly-detection
 
 
   - name: push-dev-tag-iot-software-sensor
