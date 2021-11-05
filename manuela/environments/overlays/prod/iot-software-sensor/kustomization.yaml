@@ -15,4 +15,4 @@ images:
   #  newTag: 0.3.1-1
 
   newName: image-registry.openshift-image-registry.svc:5000/iot-software-sensor/iot-software-sensor
-  newTag: 0.3.1-6
+  newTag: 0.3.1-2
