@@ -22,7 +22,7 @@ spec:
         - name: S2I_BUILDER_IMAGE
           value: registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift
         - name: LOCAL_IMAGE
-          value: quay.io/luisarizmendi/iot-software-sensor
+          value: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-software-sensor
         - name: PATH_CONTEXT
           value: .
         - name: COMPONENT_NAME

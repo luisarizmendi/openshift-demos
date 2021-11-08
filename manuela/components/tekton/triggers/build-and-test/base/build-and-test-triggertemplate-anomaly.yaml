@@ -22,7 +22,7 @@ spec:
         - name: S2I_BUILDER_IMAGE
           value: registry.access.redhat.com/rhscl/python-36-rhel7
         - name: LOCAL_IMAGE
-          value: quay.io/luisarizmendi/iot-anomaly-detection
+          value: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-anomaly-detection
         - name: PATH_CONTEXT
           value: .
         - name: COMPONENT_NAME
