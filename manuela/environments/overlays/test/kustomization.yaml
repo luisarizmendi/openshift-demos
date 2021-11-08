@@ -22,7 +22,7 @@ images:
   newTag: 0.3.1-12
 - name: iot-software-sensor #- name: iot-software-sensor
   newName: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-software-sensor
-  newTag: 0.3.1-14
+  newTag: 0.3.1-15
 - name: iot-frontend #- name: iot-frontend
   newName: image-registry.openshift-image-registry.svc:5000/manuela-test/iot-frontend
   newTag: 0.3.1-12
