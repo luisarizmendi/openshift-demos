@@ -16,4 +16,4 @@ images:
   #  newTag: 0.3.2-1
 
   newName: image-registry.openshift-image-registry.svc:5000/iot-consumer/iot-consumer
-  newTag: 0.3.1-5
+  newTag: 0.3.1-8
