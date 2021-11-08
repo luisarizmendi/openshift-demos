@@ -5,4 +5,5 @@ resources:
   - iot-frontend
   - iot-software-sensor
   - iot-consumer
-  - iot-anomaly-detection
+  # At this moment you cannot deploy two Seldon deployments in diferent namespaces because a validating webhook problem
+  #- iot-anomaly-detection
