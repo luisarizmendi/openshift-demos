@@ -5,4 +5,4 @@ resources:
   - iot-frontend
   - iot-software-sensor
   - iot-consumer
-#  - iot-anomaly-detection
+  - iot-anomaly-detection
