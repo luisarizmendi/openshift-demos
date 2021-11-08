@@ -1,12 +1,12 @@
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  generateName: manuela-test-
+  generateName: iot-consumer-
   generation: 1
-  name: manuela-test
-  namespace: manuela-test
+  name: iot-consumer
+  namespace: iot-consumer
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
   targetNamespaces:
-  - manuela-test
+  - iot-consumer
