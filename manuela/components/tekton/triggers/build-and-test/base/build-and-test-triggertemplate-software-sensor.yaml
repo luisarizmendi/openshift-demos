@@ -55,4 +55,4 @@ spec:
           #       requests:
           #         storage: 1Gi
           persistentVolumeClaim:
-            claimName: iot-software-sensor-gitrepos
+            claimName: iot-swsensor-gitrepos
