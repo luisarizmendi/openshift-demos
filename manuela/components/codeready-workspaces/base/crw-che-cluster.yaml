@@ -39,9 +39,6 @@ spec:
     serverExposureStrategy: ''
     gitSelfSignedCert: false
     cheFlavor: codeready
-    customCheProperties:
-      CHE_LIMITS_USER_WORKSPACES_RUN_COUNT: '10'
-      CHE_LIMITS_WORKSPACE_IDLE_TIMEOUT: '-1'
   storage:
     postgresPVCStorageClassName: ''
     preCreateSubPaths: true

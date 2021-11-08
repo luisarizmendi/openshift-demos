@@ -14,7 +14,7 @@ spec:
     path: manuela/environments/overlays/codeready-workspaces
   destination:
     server: https://kubernetes.default.svc
-    namespace: codeready-workspaces
+    namespace: openshift-workspaces
 
   syncPolicy:
     automated: 

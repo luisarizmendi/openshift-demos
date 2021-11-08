@@ -43,7 +43,7 @@ spec:
           values:
             name: codeready-workspaces
             path: manuela/environments/overlays/codeready-workspaces
-            namespace: codeready-workspaces
+            namespace: openshift-workspaces
             project: manuela
   template:
     metadata:
