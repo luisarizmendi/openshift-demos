@@ -11,14 +11,11 @@ resources:
 - ../../../../components/apps/iot-mqtt2kafka-integration/base
 patchesStrategicMerge:
 - iot-consumer-is.yaml
-
 configMapGenerator:
 - name: iot-consumer-configmap
   behavior: merge
   envs:
   - iot-consumer-configmap.properties.yaml
-
-
 images:
 - name: iot-consumer
   #- name: iot-consumer
@@ -26,7 +23,4 @@ images:
   #  newTag: 0.3.2-1
 
   newName: quay.io/luisarizmendi/iot-consumer
-  newTag: 0.3.1-8
-
-
-  
+  newTag: 0.3.1-10
