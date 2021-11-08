@@ -7,4 +7,4 @@ resources:
 - manuela-test-application.yaml
 - manuela-prod-application.yaml
 - manuela-cicd-application.yaml
-- codeready-workspaces-application.yaml
+- global-operators-application.yaml
