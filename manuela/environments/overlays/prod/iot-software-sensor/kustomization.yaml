@@ -16,8 +16,6 @@ configMapGenerator:
   envs:
   - iot-software-sensor-configmap.properties.yaml
 
-
-configMapGenerator:
 - name: iot-software-sensor-2
   behavior: merge
   envs:
