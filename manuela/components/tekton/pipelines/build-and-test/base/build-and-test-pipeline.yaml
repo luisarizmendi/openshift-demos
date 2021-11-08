@@ -164,6 +164,8 @@ spec:
     runAfter:
     - push-dev-tag
     - commit-ops-test
+    securityContext:
+      privileged: true
     workspaces:
     - name: gitrepos
       workspace: gitrepos
