@@ -8,20 +8,15 @@ resources:
 - ../../../../components/apps/iot-software-sensor/base
 patchesStrategicMerge:
 - iot-software-sensor-is.yaml
-
-
 configMapGenerator:
 - name: iot-software-sensor-1
   behavior: merge
   envs:
   - iot-software-sensor-configmap.properties.yaml
-
 - name: iot-software-sensor-2
   behavior: merge
   envs:
   - iot-software-sensor-configmap.properties.yaml
-
-
 images:
 - name: iot-software-sensor
   #- name: iot-software-sensor
@@ -29,4 +24,4 @@ images:
   #  newTag: 0.3.1-1
 
   newName: quay.io/luisarizmendi/iot-software-sensor
-  newTag: 0.3.1-8
+  newTag: 0.3.1-10
