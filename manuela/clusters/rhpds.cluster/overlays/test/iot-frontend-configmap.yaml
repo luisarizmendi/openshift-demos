@@ -7,7 +7,7 @@ metadata:
 data:
   config.json: |-
     {
-        "websocketHost": "http://iot-consumer-manuela-test.apps.cluster-605a.605a.sandbox438.opentlc.com",
+        "websocketHost": "http://iot-consumer-manuela-test.apps.cluster-5151.5151.sandbox1427.opentlc.com",
         "websocketPath": "/api/service-web/socket",
         "SERVER_TIMEOUT": 20000
     }

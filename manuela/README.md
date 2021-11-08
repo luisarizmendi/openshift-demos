@@ -2,6 +2,7 @@
 
 Both app and GitOps repos are based on the ones that you can find in https://github.com/sa-mw-dach with changes in GitOps repo organization, changes in CICD Pipelines and splitting the app code repos.
 
+Note: Tekton Pipelines for this application needs shared PVs, so you will need to have access to RWX storage...
 
 ## How to prepare the DEMO ?
 
@@ -98,16 +99,7 @@ https://github.com/luisarizmendi/openshift-demos/blob/master/manuela/components/
 
 Note: Sometimes, if you dont' have enough resources in your cluster, the s2i tasks fail. You just need to stop the pipeline and re-launch it again (you can do it in the actions menu on top right corner)
 
-
-
-
-
-
-
-
-
-
-
+You can check that the application was deployed opening the app frontend dashboard (I detected that sometimes you need to reload the page a couple of times the first time that you access)
 
 
 ### 4) Configure webhook in GitHub
