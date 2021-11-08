@@ -7,7 +7,6 @@ resources:
 - iot-consumer-view-rolebinding.yaml
 - manuela-test-operatorgroup.yaml
 - installplan-approver
-- ../../../../components/seldon/base
 - ../../../../components/apps/iot-consumer/base
 - ../../../../components/apps/iot-mqtt2kafka-integration/base
 patchesStrategicMerge:

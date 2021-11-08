@@ -11,10 +11,10 @@ spec:
   source:
     repoURL: https://github.com/luisarizmendi/openshift-demos
     targetRevision: master
-    path: manuela/environments/overlays/codeready-workspaces
+    path: manuela/environments/overlays/global-operators
   destination:
     server: https://kubernetes.default.svc
-    namespace: openshift-workspaces
+    namespace: openshift-operators
 
   syncPolicy:
     automated: 

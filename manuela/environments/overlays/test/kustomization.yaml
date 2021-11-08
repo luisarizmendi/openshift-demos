@@ -8,7 +8,6 @@ resources:
 - manuela-test-view-rolebinding.yaml
 - manuela-cicd-system-image-builder-role-binding.yaml
 - installplan-approver
-- ../../../components/seldon/base
 - ../../../components/apps/iot-frontend/base
 - ../../../components/apps/iot-consumer/base
 - ../../../components/apps/iot-software-sensor/base

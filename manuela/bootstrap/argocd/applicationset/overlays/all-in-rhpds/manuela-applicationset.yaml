@@ -41,9 +41,9 @@ spec:
         - cluster: local
           url: https://kubernetes.default.svc
           values:
-            name: codeready-workspaces
-            path: manuela/environments/overlays/codeready-workspaces
-            namespace: openshift-workspaces
+            name: global-operators
+            path: manuela/environments/overlays/global-operators
+            namespace: openshift-operators
             project: manuela
   template:
     metadata:
