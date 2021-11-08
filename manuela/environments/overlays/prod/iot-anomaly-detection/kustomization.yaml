@@ -14,5 +14,5 @@ images:
   #  newName: quay.io/luisarizmendi/iot-anomaly-detection
   #  newTag: 0.3.2-1
 
-  newName: image-registry.openshift-image-registry.svc:5000/iot-anomaly-detection/iot-anomaly-detection
-  newTag: 0.3.1-4
+  newName: quay.io/luisarizmendi/iot-anomaly-detection
+  newTag: 0.3.1-6

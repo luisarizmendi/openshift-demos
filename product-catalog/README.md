@@ -20,7 +20,7 @@ https://github.com/luisarizmendi/product-catalog-client
 https://github.com/luisarizmendi/product-catalog-server
 
 
-The pipelines will push and create tags in your repository, so you will need to copy them into your repository:
+The pipelines will push and create tags in your repository, so you will need to copy the images into your own repository:
 
 https://quay.io/repository/luisarizmendi/product-catalog-client
 https://quay.io/repository/luisarizmendi/product-catalog-server
@@ -41,11 +41,11 @@ For this APP you just need to prepare manifest for CICD  environment.
 
 First change the default StorageClass (Pipelines uses RWX volumes) in file clusters/"your cluster"/overlays/cicd/patch-pvc-block.yaml
 
-Second, update the SealedSecrets. You have a script which helps with updating the secrets:
+Second, update the SealedSecrets. You have a script which helps with updating the secrets (remember to be logged in into the OpenShift cluster with "oc login"):
 
 https://github.com/luisarizmendi/openshift-demos/blob/master/product-catalog/scripts/sealed-secrets/update-sealed-secrets.sh
 
-Note: Remember to create first a file "env_secrets" with the right values. You will need to provide a GitHub token, a Slack Webhook (if you want to receive messages from Pipeline) and the credentials for your image repository.
+Note: Remember also to create first a file "env_secrets" with the right values. You will need to provide a GitHub token, a Slack Webhook (if you want to receive messages from Pipeline) and the credentials for your image repository.
 
 You can create the GitHub under Settings > Developer Settings > Personal access tokens (give it just permissions for repos)
 
@@ -105,7 +105,7 @@ Note: I've found that nip.io URLs sometimes are not working with GitHub webhooks
 
 
 
-## About these repos 
+## About the repos 
 (copy from https://github.com/gnunn-gitops)
 
 ### Introduction
