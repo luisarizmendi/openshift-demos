@@ -8,5 +8,3 @@ spec:
  params:
  - name: gitrepository
    value: $(body.repository.full_name)
- - name: gitid
-   value: $(body.after)
