@@ -2,10 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: iot-consumer
 resources:
-- installplan-approver
 - iot-consumer-namespace.yaml
 - iot-consumer-admin-rolebinding.yaml
 - iot-consumer-view-rolebinding.yaml
+- manuela-test-operatorgroup.yaml
+- installplan-approver
 - ../../../../components/apps/iot-consumer/base
 - ../../../../components/apps/iot-mqtt2kafka-integration/base
 patchesStrategicMerge:
