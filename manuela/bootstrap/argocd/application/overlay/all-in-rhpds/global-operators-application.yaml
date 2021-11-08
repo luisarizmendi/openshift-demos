@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: codeready-workspaces
+  name: global-operators
   namespace: argocd
   annotations:
     argocd.argoproj.io/compare-options: IgnoreExtraneous

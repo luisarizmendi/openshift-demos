@@ -1,12 +1,12 @@
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  generateName: codeready-workspaces-
+  generateName: openshift-workspaces-
   generation: 1
-  name: codeready-workspaces
-  namespace: codeready-workspaces
+  name: openshift-workspaces
+  namespace: openshift-workspaces
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
   targetNamespaces:
-  - codeready-workspaces
+  - openshift-workspaces
