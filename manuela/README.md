@@ -48,12 +48,6 @@ https://github.com/luisarizmendi/openshift-demos/blob/master/scripts/deploy_argo
 
 There is a directory (manuela/clusters) where the Cluster specific manifests should be configured (You might want to copy-paste one of the already configured directories and customize those files).
 
-
-
-
-
-
-
 For this APP you just need to:
 - Update Sealed Secrets in the cicd folder
 - Configure the right domain in prod and test folders (file "iot-frontend-configmap.yaml")
@@ -104,20 +98,20 @@ You can check that the application was deployed opening the app frontend dashboa
 
 ### 4) Configure webhook in GitHub
 
-Open forked product-catalog-server and product-catalog-client github repos (Go to Settings > Webhook) click on Add Webhook > Add
+Open forked application repos and create a Webhook (Go to Settings > Webhook, Add Webhook > Add)
 
+In each repo (where you want a webhook to start the build pipeline), you will need to perform the following steps:
 
-1) Payload URL: In the client repo you need to configure this route:
-
-```
-echo $(oc get -n product-catalog-cicd route client-webhook --template='http://{{.spec.host}}')
-```
-
-In the server repo you need to configure this route:
+1) Payload URL: you can get the payload URLs by running this command (choose the right one for the repo that you are configuring):
 
 ```
-echo $(oc get -n product-catalog-cicd route server-webhook --template='http://{{.spec.host}}')
+for i in frontend consumer software-sensor anomaly
+do
+  echo $(oc get -n manuela-cicd route build-and-test-${i}-webhook --template='http://{{.spec.host}}')
+done
+
 ```
+
 
 Note: I've found that nip.io URLs sometimes are not working with GitHub webhooks.
 
@@ -132,4 +126,6 @@ Note: I've found that nip.io URLs sometimes are not working with GitHub webhooks
 
 
 
-## About these repos 
+## About the APP
+
+You can find more information about the application in https://github.com/sa-mw-dach/manuela
