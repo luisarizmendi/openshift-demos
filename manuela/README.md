@@ -93,7 +93,7 @@ https://github.com/luisarizmendi/openshift-demos/blob/master/manuela/components/
 
 Note: Sometimes, if you dont' have enough resources in your cluster, the s2i tasks fail. You just need to stop the pipeline and re-launch it again (you can do it in the actions menu on top right corner)
 
-You can check that the application was deployed opening the app frontend dashboard (I detected that sometimes you need to reload the page a couple of times the first time that you access)
+You can check that the application was deployed opening the app frontend dashboard (I detected that, if you are low in resources, sometimes you need to reload the page a couple of times the first time that you access)
 
 
 ### 4) Configure webhook in GitHub
