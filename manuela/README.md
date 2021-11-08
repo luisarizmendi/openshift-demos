@@ -17,23 +17,23 @@ https://github.com/luisarizmendi/openshift-demos
 
 APPs repos:
 
-https://github.com/luisarizmendi/manuela-iot-frontend
-https://github.com/luisarizmendi/manuela-iot-consumer
-https://github.com/luisarizmendi/manuela-iot-software-sensor
-https://github.com/luisarizmendi/manuela-iot-anomaly-detection
+- https://github.com/luisarizmendi/manuela-iot-frontend
+- https://github.com/luisarizmendi/manuela-iot-consumer
+- https://github.com/luisarizmendi/manuela-iot-software-sensor
+- https://github.com/luisarizmendi/manuela-iot-anomaly-detection
 
 
 The pipelines will push and create tags in your repository, so you will need to copy the images into your own repository:
 
-https://quay.io/repository/luisarizmendi/iot-frontend
-https://quay.io/repository/luisarizmendi/iot-consumer
-https://quay.io/repository/luisarizmendi/iot-software-sensor
-https://quay.io/repository/luisarizmendi/iot-anomaly-detection
+- https://quay.io/repository/luisarizmendi/iot-frontend
+- https://quay.io/repository/luisarizmendi/iot-consumer
+- https://quay.io/repository/luisarizmendi/iot-software-sensor
+- https://quay.io/repository/luisarizmendi/iot-anomaly-detection
 
 There are also a couple of base images used to build the app and for the pipeline tasks:
 
-https://quay.io/repository/luisarizmendi/httpd-ionic
-https://quay.io/repository/luisarizmendi/bumpversiontask 
+- https://quay.io/repository/luisarizmendi/httpd-ionic
+- https://quay.io/repository/luisarizmendi/bumpversiontask 
 
 
 
