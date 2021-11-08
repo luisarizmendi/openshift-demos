@@ -24,6 +24,8 @@ spec:
             path: manuela/clusters/rhpds.cluster/overlays/test
             namespace: manuela-test
             project: manuela
+            prune: false
+            selfHeal: true
         - cluster: local
           url: https://kubernetes.default.svc
           values:
@@ -31,6 +33,8 @@ spec:
             path: manuela/clusters/rhpds.cluster/overlays/prod
             namespace: manuela-prod
             project: manuela
+            prune: false
+            selfHeal: true
         - cluster: local
           url: https://kubernetes.default.svc
           values:
@@ -38,6 +42,8 @@ spec:
             path: manuela/clusters/rhpds.cluster/overlays/cicd
             namespace: manuela-cicd
             project: manuela
+            prune: false
+            selfHeal: true
         - cluster: local
           url: https://kubernetes.default.svc
           values:
@@ -45,6 +51,8 @@ spec:
             path: manuela/environments/overlays/global-operators
             namespace: openshift-operators
             project: manuela
+            prune: false
+            selfHeal: false
   template:
     metadata:
       name: '{{values.name}}'
@@ -55,8 +63,8 @@ spec:
       project: '{{values.project}}'
       syncPolicy:
         automated:
-          prune: false
-          selfHeal: true
+          prune: '{{values.prune}}'
+          selfHeal: '{{values.selfHeal}}'
       source:
         repoURL: https://github.com/luisarizmendi/openshift-demos
         targetRevision: master
