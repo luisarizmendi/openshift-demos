@@ -1,6 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: manuela-test
+
 resources:
 - manuela-test-namespace.yaml
 - manuela-test-operatorgroup.yaml
