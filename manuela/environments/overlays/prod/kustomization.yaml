@@ -5,5 +5,5 @@ resources:
   - iot-frontend
   - iot-software-sensor
   - iot-consumer
-  # At this moment you cannot deploy two Seldon deployments in diferent namespaces because a validating webhook problem
+  # At this moment you cannot deploy two Seldon deployments in diferent namespaces in the same Cluster because a validating webhook problem
   #- iot-anomaly-detection
