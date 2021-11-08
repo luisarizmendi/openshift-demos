@@ -123,7 +123,7 @@ Note: I've found that nip.io URLs sometimes are not working with GitHub webhooks
 
 5) Click on Add Webhook
 
-
+Note: Remember to not running multiple builds at once, cloning and making changes in the gitops repository on each run, which may conflict with other pipelinerun
 
 
 ## About the APP
