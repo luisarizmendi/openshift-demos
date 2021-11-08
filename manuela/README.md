@@ -2,7 +2,7 @@
 
 Both app and GitOps repos are based on the ones that you can find in https://github.com/sa-mw-dach with changes in GitOps repo organization, changes in CICD Pipelines and splitting the app code repos.
 
-Note: Tekton Pipelines for this application needs shared PVs, so you will need to have access to RWX storage...
+Note: Tekton Pipelines for this application needs shared PVs, so you will need to have access to RWX storage. The PVCs are not specifying a Storage Class, so they will be using the default one (be sure that it provices RWX)
 
 ## How to prepare the DEMO ?
 

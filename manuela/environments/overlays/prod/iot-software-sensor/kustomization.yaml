@@ -8,6 +8,22 @@ resources:
 - ../../../../components/apps/iot-software-sensor/base
 patchesStrategicMerge:
 - iot-software-sensor-is.yaml
+
+
+configMapGenerator:
+- name: iot-software-sensor-1
+  behavior: merge
+  envs:
+  - iot-software-sensor-configmap.properties.yaml
+
+
+configMapGenerator:
+- name: iot-software-sensor-2
+  behavior: merge
+  envs:
+  - iot-software-sensor-configmap.properties.yaml
+
+
 images:
 - name: iot-software-sensor
   #- name: iot-software-sensor
