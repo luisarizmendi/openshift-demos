@@ -55,4 +55,4 @@ spec:
           #       requests:
           #         storage: 1Gi
           persistentVolumeClaim:
-            claimName: iot-anomaly-detection-gitrepos
+            claimName: iot-anomaly-gitrepos
