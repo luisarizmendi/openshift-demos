@@ -36,6 +36,22 @@ There are also a couple of base images used to build the app and for the pipelin
 - https://quay.io/repository/luisarizmendi/bumpversiontask 
 
 
+Since I'm using my own repos (https://github.com/luisarizmendi/xxxx) in the descriptors, you will need to change the references to the gitops repo in:
+
+- Application and ApplicationSet files under directory manuela/bootstrap/argocd/
+- Pipeline config in file manuela/components/tekton/shared-workspaces/pipeline-config.yaml
+
+You will also need to change references to app code repositories in the Pipeline config file.
+
+
+Regaring the impage repository, same kind of changes (I'm using quay.io/luisarizmendi), you will need to include references to your own registry
+
+- In kustomization.yaml files under manuela/environments/overlays/
+- Pipeline config in file manuela/components/tekton/shared-workspaces/pipeline-config.yaml
+- In pipelineruns objects in manuela/components/tekton/pipelineruns
+- In triggertemplate objects in manuela/components/tekton/triggers
+
+
 
 ### 1) Deploy ArgoCD and Bitnami Sealed Secrets
 

@@ -13,6 +13,10 @@ spec:
       value: "true"
     - name: environment_gitops_path
       value: product-catalog/environments/overlays/prod
+    - name: git_url
+      value: https://github.com/luisarizmendi/product-catalog-client
+    - name: image_dest_url
+      value: quay.io/luisarizmendi/product-catalog-client
   workspaces:
   - name: git-source
     persistentVolumeClaim:
