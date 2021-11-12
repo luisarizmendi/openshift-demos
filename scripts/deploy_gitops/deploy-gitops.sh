@@ -24,19 +24,22 @@ fi
 
 # Create Role to access all api endpoints and give it to argocd-redis-ha Service Account
 
-oc apply -k resources/operators/argocd-operator
+oc apply -k resources/operators/gitops-operator
 
 
 # Wait for the resource ArgoCD and create one and wait until it is ready
+
 RESOURCE="ArgoCD"
+
 while [[ $(oc api-resources | grep $RESOURCE  > /dev/null ; echo $?) != "0" ]]; do echo "Waiting for $RESOURCE object..." && sleep 10; done
 
-oc apply -k resources/crds/argocd
-
+#oc apply -k resources/crds/gitops
+oc apply -f resources/crds/gitops/argocd.yaml 
 
 # Wait for ArgoCD CRD is ready
 NUMBER_COMPONENTS="5"
-while [[ $(oc describe argocd -n argocd | grep Running | wc -l) != $NUMBER_COMPONENTS ]]; do echo "Waiting ArgoCD deployment..." && sleep 10; done
+NAMESPACE="openshift-gitops"
+while [[ $(oc describe argocd -n $NAMESPACE | grep Running | wc -l) != $NUMBER_COMPONENTS ]]; do echo "Waiting ArgoCD deployment..." && sleep 10; done
 
 
 

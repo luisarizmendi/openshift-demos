@@ -1,0 +1,81 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
+metadata:
+  name: openshift-gitops
+  namespace: openshift-gitops
+spec:
+  controller:
+    resources:
+      limits:
+        cpu: 2000m
+        memory: 2048Mi
+      requests:
+        cpu: 250m
+        memory: 1024Mi
+  dex:
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 250m
+        memory: 128Mi
+    openShiftOAuth: true
+  ha:
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 250m
+        memory: 128Mi
+    enabled: false
+  rbac:
+    defaultPolicy: ''
+    policy: |
+      g, system:cluster-admins, role:admin
+    scopes: '[groups]'
+  redis:
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 250m
+        memory: 128Mi
+  repo:
+    resources:
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
+      requests:
+        cpu: 250m
+        memory: 256Mi
+  server:
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 125m
+        memory: 128Mi
+    route:
+      annotations: {}
+      enabled: true
+      path: /
+      TLS:
+        insecureEdgeTerminationPolicy: Redirect
+        termination: passthrough
+      wildcardPolicy: None
+    insecure: false
+
+#see: https://argocd-operator.readthedocs.io/en/latest/reference/argocd/
+#  kustomizeBuildOptions: --load_restrictor none --enable_alpha_plugins
+  applicationSet: {}
+  resourceCustomizations: |
+    bitnami.com/SealedSecret:
+      health.lua: |
+        hs = {}
+        hs.status = "Healthy"
+        hs.message = "Controller doesn't report resource status"
+        return hs
