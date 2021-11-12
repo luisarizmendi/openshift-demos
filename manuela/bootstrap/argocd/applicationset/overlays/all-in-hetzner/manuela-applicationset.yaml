@@ -96,36 +96,4 @@ spec:
       - group: org.eclipse.che
         kind: CheCluster
         jsonPointers:
-        - /spec/auth/identityProviderURL
-      - group: org.eclipse.che
-        kind: CheCluster
-        jsonPointers:
-        - /spec/auth/oAuthClientName
-      - group: org.eclipse.che
-        kind: CheCluster
-        jsonPointers:
-        - /spec/auth/oAuthSecret
-      - group: org.eclipse.che
-        kind: CheCluster
-        jsonPointers:
-        - /spec/auth/identityProviderClientId
-      - group: org.eclipse.che
-        kind: CheCluster
-        jsonPointers:
-        - /spec/auth/identityProviderRealm
-      - group: org.eclipse.che
-        kind: CheCluster
-        jsonPointers:
-        - /spec/database/chePostgresDb
-      - group: org.eclipse.che
-        kind: CheCluster
-        jsonPointers:
-        - /spec/database/chePostgresHostName
-      - group: org.eclipse.che
-        kind: CheCluster
-        jsonPointers:
-        - /spec/database/chePostgresPort
-      - group: org.eclipse.che
-        kind: CheCluster
-        jsonPointers:
-        - /spec/server/serverExposureStrategy
+        - /spec
