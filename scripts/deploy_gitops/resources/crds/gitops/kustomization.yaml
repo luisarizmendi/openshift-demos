@@ -5,4 +5,5 @@ namespace: openshift-gitops
 
 resources:
 - argocd.yaml
+- application-controller-cluster-admin.yaml
 #- ../../operators/gitops-operator

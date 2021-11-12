@@ -30,6 +30,7 @@ while [[ $(oc describe argocd -n $NAMESPACE | grep Running | wc -l) != $NUMBER_C
 
 
 #oc apply -k resources/crds/gitops
+oc apply -f resources/crds/gitops/application-controller-cluster-admin.yaml
 oc apply -f resources/crds/gitops/argocd.yaml 
 
 

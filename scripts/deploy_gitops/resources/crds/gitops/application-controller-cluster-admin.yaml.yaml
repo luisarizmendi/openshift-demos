@@ -1,0 +1,14 @@
+kind: ClusterRoleBinding
+apiVersion: authorization.openshift.io/v1
+metadata:
+  name: openshift-gitops-argocd-application-controller-cluster-admin
+userNames:
+  - >-
+    system:serviceaccount:openshift-operators:openshift-gitops-argocd-application-controller
+groupNames: null
+subjects:
+  - kind: ServiceAccount
+    namespace: openshift-operators
+    name: openshift-gitops-argocd-application-controller
+roleRef:
+  name: cluster-admin

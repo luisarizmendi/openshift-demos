@@ -31,7 +31,7 @@ spec:
         memory: 128Mi
     enabled: false
   rbac:
-    defaultPolicy: ''
+    defaultPolicy: role:admin
     policy: |
       g, system:cluster-admins, role:admin
     scopes: '[groups]'
