@@ -7,7 +7,7 @@ metadata:
 spec:
   channel: 7.x
   installPlanApproval: Manual
-  name: amq-broker
+  name: amq-broker-rhel8
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: amq-broker-operator.v7.8.2-opr-1
+  startingCSV: amq-broker-operator.v7.9.0-opr-1
