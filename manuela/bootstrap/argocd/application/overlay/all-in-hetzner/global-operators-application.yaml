@@ -82,4 +82,7 @@ spec:
     kind: CheCluster
     jsonPointers:
     - /spec/database/chePostgresPort
-
+  - group: org.eclipse.che
+    kind: CheCluster
+    jsonPointers:
+    - /spec/server/serverExposureStrategy
