@@ -1,5 +1,5 @@
 .DS_Store
-scripts/deploy_argo/kubeseal-cert.pem
+scripts/deploy_gitops/kubeseal-cert.pem
 manuela/scripts/sealed-secrets/kubeseal-cert.pem
 manuela/scripts/sealed-secrets/env_secrets
 

@@ -109,7 +109,6 @@ EOF
 sleep 15 
 
 kubeseal  \
-  --controller-name sealed-secret-controller-sealed-secrets \
   --controller-namespace sealed-secrets \
   --fetch-cert > kubeseal-cert.pem
 

@@ -5,4 +5,4 @@ namespace: sealed-secrets
 
 resources:
 - sealedsecretcontrollers.yaml
-- ../../operators/sealed-secrets-operator
+#- ../../operators/sealed-secrets-operator

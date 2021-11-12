@@ -73,7 +73,7 @@ EOF
 
 
 
-ARGOCD_PASSWORD=$(oc get secret argocd-cluster -n argocd -o jsonpath='{.data.*}')
+ARGOCD_PASSWORD=$(oc get secret openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.*}')
 
 cat <<EOF > /tmp/argocd-env-secret.yaml
 apiVersion: v1
@@ -107,7 +107,6 @@ EOF
 sleep 15 
 
 kubeseal  \
-  --controller-name sealed-secret-controller-sealed-secrets \
   --controller-namespace sealed-secrets \
   --fetch-cert > kubeseal-cert.pem
 
