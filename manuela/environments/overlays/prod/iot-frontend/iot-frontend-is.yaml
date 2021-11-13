@@ -4,13 +4,6 @@ metadata:
   name: iot-frontend
 spec:
   tags:
-  - name: 0.3.1-6
-    from:
-      kind: DockerImage
-      name: quay.io/luisarizmendi/iot-frontend:0.3.1-6
-    importPolicy: {}
-    referencePolicy:
-      type: Local
   - name: 0.3.1-9
     from:
       kind: DockerImage
@@ -36,6 +29,13 @@ spec:
     from:
       kind: DockerImage
       name: quay.io/luisarizmendi/iot-frontend:0.3.1-14
+    importPolicy: {}
+    referencePolicy:
+      type: Local
+  - name: 0.3.1-16
+    from:
+      kind: DockerImage
+      name: quay.io/luisarizmendi/iot-frontend:0.3.1-16
     importPolicy: {}
     referencePolicy:
       type: Local
