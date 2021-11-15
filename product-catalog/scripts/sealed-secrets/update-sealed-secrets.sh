@@ -158,15 +158,15 @@ read clustername
 echo ""
 
 
-    cp /tmp/github-sealed-secret.yaml ${path_to_clusters}/${clustername}/overlays/cicd/
-    cp /tmp/slack-deployments-webhook-sealed-secret.yaml ${path_to_clusters}/${clustername}/overlays/cicd/
-    cp /tmp/docker-sealed-secret.yaml ${path_to_clusters}/${clustername}/overlays/cicd/
+    cp /tmp/github-sealed-secret.yaml ${path_to_clusters}/${clustername}/base/cicd/
+    cp /tmp/slack-deployments-webhook-sealed-secret.yaml ${path_to_clusters}/${clustername}/base/cicd/
+    cp /tmp/docker-sealed-secret.yaml ${path_to_clusters}/${clustername}/base/cicd/
 
 
 echo ""
 echo ""
 echo ""
-echo "Secret files created in directories under ${path_to_clusters}/${clustername}/overlays/cicd/ "
+echo "Secret files created in directories under ${path_to_clusters}/${clustername}/base/cicd/ "
 echo ""
 echo "*******************************************************************"
 echo ""
