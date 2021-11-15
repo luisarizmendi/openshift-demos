@@ -60,7 +60,7 @@ sudo cp /tmp/kubeseal /usr/local/bin/kubeseal
 
 
 # Get cert and include it in the repo
-sleep 15 
+sleep 30 
 
 kubeseal  \
   --controller-namespace sealed-secrets \
