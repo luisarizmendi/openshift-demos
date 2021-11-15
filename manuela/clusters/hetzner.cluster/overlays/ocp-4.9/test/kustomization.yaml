@@ -4,3 +4,7 @@ kind: Kustomization
 resources:
 - ../../../base/test
 - ../../../../../environments/overlays/ocp-4.9/test
+
+
+patchesStrategicMerge:
+- ../../../base/test/iot-frontend-configmap.yaml
