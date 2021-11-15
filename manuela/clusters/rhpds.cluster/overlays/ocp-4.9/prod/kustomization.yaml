@@ -3,4 +3,4 @@ kind: Kustomization
 
 resources:
 - ../../../base/prod
-
+- ../../../../../environments/overlays/ocp-4.9/prod
