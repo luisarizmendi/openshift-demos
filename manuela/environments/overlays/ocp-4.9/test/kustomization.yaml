@@ -3,3 +3,9 @@ kind: Kustomization
 
 resources:
 - ../../../base/test
+# No Seldon deployment in 4.9 yet
+- iot-anomaly-detection-seldon.yaml
+
+patchesStrategicMerge:
+- amq-operator-subscription.yaml
+- amq-streams-operator-subscription.yaml
