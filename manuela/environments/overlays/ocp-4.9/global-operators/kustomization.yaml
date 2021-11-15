@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
 - ../../../base/global-operators
+- seldon-subscription.yaml
 
 patchesStrategicMerge:
 - remove-seldon-redhat-subscription.yaml
