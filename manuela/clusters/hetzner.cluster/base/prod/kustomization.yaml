@@ -5,3 +5,5 @@ resources:
 - iot-frontend-configmap.yaml
 
 
+patchesStrategicMerge:
+- iot-frontend-configmap.yaml
