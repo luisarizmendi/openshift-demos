@@ -1,11 +1,10 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  name: seed
+  generateName: seed-
   annotations:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
     argocd.argoproj.io/sync-options: Prune=false
-    argocd.argoproj.io/sync-wave: "3"
 spec:
   pipelineRef:
     name: seed
