@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/luisarizmendi/openshift-demos
     targetRevision: master
-    path: product-catalog/environments/overlays/prod
+    path: product-catalog/environments/overlays/ocp-4.8/prod
   destination:
     server: https://kubernetes.default.svc
     namespace: product-catalog-prod

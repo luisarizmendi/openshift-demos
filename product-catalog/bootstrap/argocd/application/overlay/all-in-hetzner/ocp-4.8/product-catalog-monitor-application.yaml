@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/luisarizmendi/openshift-demos
     targetRevision: master
-    path: product-catalog/environments/overlays/monitor
+    path: product-catalog/environments/overlays/ocp-4.8/monitor
   destination:
     server: https://kubernetes.default.svc
     namespace: product-catalog-monitor
