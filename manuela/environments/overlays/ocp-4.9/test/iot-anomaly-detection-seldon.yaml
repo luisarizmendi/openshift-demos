@@ -2,6 +2,7 @@ apiVersion: machinelearning.seldon.io/v1alpha1
 kind: SeldonDeploy
 metadata:
   name: anomaly-detection
+  namespace: iot-anomaly-detection
   labels:
     component: serving
     app.kubernetes.io/part-of: manuela

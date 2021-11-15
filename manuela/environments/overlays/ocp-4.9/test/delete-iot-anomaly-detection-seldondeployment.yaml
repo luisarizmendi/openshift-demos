@@ -1,8 +1,8 @@
-apiVersion: machinelearning.seldon.io/v1alpha1
-kind: SeldonDeploy
+$patch: delete
+apiVersion: machinelearning.seldon.io/v1
+kind: SeldonDeployment
 metadata:
   name: anomaly-detection
-  namespace: iot-anomaly-detection
   labels:
     component: serving
     app.kubernetes.io/part-of: manuela
