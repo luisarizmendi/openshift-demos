@@ -1,13 +1,13 @@
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
-  name: amq-broker
+  name: amq-streams
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
-  channel: 7.x
+  channel: stable
   installPlanApproval: Manual
-  name: amq-broker
+  name: amq-streams
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: amq-broker-operator.v7.8.2-opr-1
+  startingCSV: amqstreams.v1.8.2

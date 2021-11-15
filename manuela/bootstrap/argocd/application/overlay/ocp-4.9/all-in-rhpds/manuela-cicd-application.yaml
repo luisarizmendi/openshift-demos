@@ -1,0 +1,53 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: manuela-cicd
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+    argocd.argoproj.io/sync-options: Prune=false
+spec:
+  project: manuela
+  source:
+    repoURL: https://github.com/luisarizmendi/openshift-demos
+    targetRevision: master
+    path: manuela/clusters/rhpds.cluster/overlays/ocp-4.9/cicd
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: manuela-cicd
+
+  syncPolicy:
+    automated: 
+      prune: false
+      selfHeal: true
+
+  ignoreDifferences:
+  - group: tekton.dev
+    kind: PipelineRun
+    jsonPointers:
+    - /
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/replicas
+  - group: route.openshift.io
+    kind: Route
+    jsonPointers:
+    - /status
+  - group: image.openshift.io
+    kind: ImageStream
+    jsonPointers:
+    - /spec/tags
+  - group: apps.openshift.io
+    kind: DeploymentConfig
+    jsonPointers:
+    - /spec/template/spec/containers/0/image
+  - group: operators.coreos.com
+    kind: OperatorGroup
+    jsonPointers:
+    - /metadata/annotations/olm.providedAPIs
+  - group: tekton.dev
+    kind: PipelineRun
+    jsonPointers:
+    - /
+

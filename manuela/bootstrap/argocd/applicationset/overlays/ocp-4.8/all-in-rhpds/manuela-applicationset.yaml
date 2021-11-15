@@ -1,0 +1,92 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: manuela
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+    argocd.argoproj.io/sync-options: Prune=false
+spec:
+  generators:
+    - list:
+        elements:
+        - cluster: local
+          url: https://kubernetes.default.svc
+          values:
+            name: manuela-test
+            path: manuela/clusters/rhpds.cluster/overlays/ocp-4.8/test
+            namespace: manuela-test
+            project: manuela
+        - cluster: local
+          url: https://kubernetes.default.svc
+          values:
+            name: manuela-prod
+            path: manuela/clusters/rhpds.cluster/overlays/ocp-4.8/prod
+            namespace: manuela-prod
+            project: manuela
+        - cluster: local
+          url: https://kubernetes.default.svc
+          values:
+            name: manuela-cicd
+            path: manuela/clusters/rhpds.cluster/overlays/ocp-4.8/cicd
+            namespace: manuela-cicd
+            project: manuela
+        - cluster: local
+          url: https://kubernetes.default.svc
+          values:
+            name: global-operators
+            path: manuela/environments/overlays/ocp-4.8/global-operators
+            namespace: openshift-operators
+            project: manuela
+  template:
+    metadata:
+      name: '{{values.name}}'
+      annotations:
+        argocd.argoproj.io/compare-options: IgnoreExtraneous
+        argocd.argoproj.io/sync-options: Prune=false
+    spec:
+      project: '{{values.project}}'
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: false
+      source:
+        repoURL: https://github.com/luisarizmendi/openshift-demos
+        targetRevision: master
+        path: '{{values.path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{values.namespace}}'
+      ignoreDifferences:
+      - group: tekton.dev
+        kind: PipelineRun
+        jsonPointers:
+        - /
+      - group: apps
+        kind: Deployment
+        jsonPointers:
+        - /spec/replicas
+      - group: route.openshift.io
+        kind: Route
+        jsonPointers:
+        - /status
+      - group: image.openshift.io
+        kind: ImageStream
+        jsonPointers:
+        - /spec/tags
+      - group: apps.openshift.io
+        kind: DeploymentConfig
+        jsonPointers:
+        - /spec/template/spec/containers/0/image
+      - group: operators.coreos.com
+        kind: OperatorGroup
+        jsonPointers:
+        - /metadata/annotations/olm.providedAPIs
+      - group: org.eclipse.che
+        kind: CheCluster
+        jsonPointers:
+        - /metadata/managedFields
+      - group: org.eclipse.che
+        kind: CheCluster
+        jsonPointers:
+        - /spec

@@ -1,5 +1,5 @@
-apiVersion: machinelearning.seldon.io/v1
-kind: SeldonDeployment
+apiVersion: machinelearning.seldon.io/v1alpha1
+kind: SeldonDeploy
 metadata:
   name: anomaly-detection
   labels:

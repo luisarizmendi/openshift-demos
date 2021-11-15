@@ -1,13 +1,14 @@
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
-  name: amq-broker
+  name: seldon-deploy-operator-rhmp
+  namespace: openshift-operators
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
-  channel: 7.x
+  channel: stable
   installPlanApproval: Manual
-  name: amq-broker
-  source: redhat-operators
+  name: seldon-deploy-operator-rhmp
+  source: redhat-marketplace
   sourceNamespace: openshift-marketplace
-  startingCSV: amq-broker-operator.v7.8.2-opr-1
+  startingCSV: seldon-deploy-operator.v1.2.1
