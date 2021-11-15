@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
 - ../../../base/cicd
-- ../../../../environments/overlays/ocp-4.8/cicd
+- ../../../../../environments/overlays/ocp-4.8/cicd
 
 
 patches:
