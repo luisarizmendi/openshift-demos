@@ -3,3 +3,7 @@ kind: Kustomization
 
 resources:
 - ../../../base/test/cicd
+
+
+patchesStrategicMerge:
+- ../../../base/test/iot-frontend-configmap.yaml
