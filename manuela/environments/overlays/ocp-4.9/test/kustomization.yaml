@@ -9,3 +9,4 @@ resources:
 patchesStrategicMerge:
 - amq-operator-subscription.yaml
 - amq-streams-operator-subscription.yaml
+- delete-iot-anomaly-detection-seldondeployment.yaml
