@@ -7,4 +7,4 @@ resources:
 
 
 patchesStrategicMerge:
-- ../../../base/test/iot-frontend-configmap.yaml
+- iot-frontend-configmap.yaml
