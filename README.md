@@ -10,7 +10,7 @@ You will find some steps to prepare the demo inside each application folder
 
 ## OpenShift version
 
-The repo is prepared to be run with the latest OpenShift version, but you can ajust the operator versions and it should work if you are not too far from the most recent relase.
+The repo is prepared to be run with different OpenShift releases (check overlays on each demo app).
 
 
 
