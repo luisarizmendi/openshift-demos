@@ -109,7 +109,13 @@ https://github.com/luisarizmendi/openshift-demos/blob/master/manuela/components/
 
 Note: Sometimes, if you dont' have enough resources in your cluster, the s2i tasks fail. You just need to stop the pipeline and re-launch it again (you can do it in the actions menu on top right corner)
 
-You can check that the application was deployed opening the app frontend dashboard (I detected that, if you are low in resources, sometimes you need to reload the page a couple of times the first time that you access)
+You can check that the application was deployed opening the app frontend dashboard (I detected that, if you are low in resources, sometimes you need to reload the page a couple of times the first time that you access).
+
+To test the anomaly detection service you can use a query similar to this one:
+
+```
+curl -k -X POST -H 'Content-Type: application/json' -d '{"data": { "ndarray": [[16.1,  15.40,  15.32,  13.47,  17.70]]}}' http://$(oc get route anomaly-detection -o jsonpath='{.spec.host}' -n manuela-test)/api/v1.0/predictions
+```
 
 
 ### 4) Configure webhook in GitHub
@@ -125,7 +131,6 @@ for i in frontend consumer software-sensor anomaly
 do
   echo $(oc get -n manuela-cicd route build-and-test-${i}-webhook --template='http://{{.spec.host}}')
 done
-
 ```
 
 
@@ -140,6 +145,20 @@ Note: I've found that nip.io URLs sometimes are not working with GitHub webhooks
 5) Click on Add Webhook
 
 Note: Remember to not running multiple builds at once, cloning and making changes in the gitops repository on each run, which may conflict with other pipelinerun
+
+
+### 4) Deploy a CodeReady Workspaces workspace
+
+1) Open CodeReady Workspaces: It will be running in the namespace openshift-workspaces, with a route similar to: http://codeready-openshift-workspaces.apps.<cluster name>.<domain>
+
+2) Create a new workspace copy-pasting this devfile:
+
+https://raw.githubusercontent.com/luisarizmendi/openshift-demos/master/manuela/components/global-operators/codeready-workspaces/base/devfile.yaml
+
+
+
+
+
 
 
 ## About the APP

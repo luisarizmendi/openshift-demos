@@ -7,7 +7,7 @@ metadata:
 data:
   config.json: |-
     {
-        "websocketHost": "http://iot-consumer-iot-consumer.apps.cluster-mxn84.mxn84.sandbox957.opentlc.com",
+        "websocketHost": "http://iot-consumer-iot-consumer.apps.cluster-qfp7b.qfp7b.sandbox942.opentlc.com",
         "websocketPath": "/api/service-web/socket",
         "SERVER_TIMEOUT": 20000
     }

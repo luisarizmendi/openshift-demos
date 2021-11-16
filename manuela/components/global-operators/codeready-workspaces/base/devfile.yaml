@@ -84,19 +84,19 @@ components:
 commands:
  - name: build
    actions:
-   - workdir: '${CHE_PROJECTS_ROOT}/manuela-dev/components/iot-software-sensor'
+   - workdir: '${CHE_PROJECTS_ROOT}/iot-software-sensor'
      type: exec
      command: 'MAVEN_OPTS="-Xmx200m" && mvn -Duser.home=${HOME} -DskipTests clean install'
      component: iot-software-sensor
  - name: run
    actions:
-   - workdir: '${CHE_PROJECTS_ROOT}/manuela-dev/components/iot-software-sensor'
+   - workdir: '${CHE_PROJECTS_ROOT}/iot-software-sensor'
      type: exec
      command: 'MAVEN_OPTS="-Xmx200m" && mvn -Duser.home=${HOME} spring-boot:run'
      component: iot-software-sensor
  - name: debug
    actions:
-   - workdir: '${CHE_PROJECTS_ROOT}/manuela-dev/components/iot-software-sensor'
+   - workdir: '${CHE_PROJECTS_ROOT}/iot-software-sensor'
      type: exec
      command: >-
       mvn  -Duser.home=${HOME} spring-boot:run -Drun.jvmArguments="-Xdebug
@@ -104,28 +104,28 @@ commands:
      component: iot-software-sensor
  - name: test
    actions:
-   - workdir: '${CHE_PROJECTS_ROOT}/manuela-dev/components/iot-software-sensor'
+   - workdir: '${CHE_PROJECTS_ROOT}/iot-software-sensor'
      type: exec
      command: 'MAVEN_OPTS="-Xmx200m" && mvn -Duser.home=${HOME} verify'
      component: iot-software-sensor
  - name: dependency-analysis
    actions:
-   - workdir: '${CHE_PROJECTS_ROOT}/manuela-dev/components/iot-software-sensor'
+   - workdir: '${CHE_PROJECTS_ROOT}/iot-software-sensor'
      type: exec
      command: >-
       ${HOME}/stack-analysis.sh -f
-      ${CHE_PROJECTS_ROOT}/manuela-dev/components/iot-software-sensor/pom.xml -p
-      ${CHE_PROJECTS_ROOT}/manuela-dev/components/iot-software-sensor
+      ${CHE_PROJECTS_ROOT}/iot-software-sensor/pom.xml -p
+      ${CHE_PROJECTS_ROOT}/iot-software-sensor
      component: iot-software-sensor
  - name: install dependencies
    actions:
-   - workdir: '${CHE_PROJECTS_ROOT}/manuela-dev/components/iot-consumer'
+   - workdir: '${CHE_PROJECTS_ROOT}/iot-consumer'
      type: exec
      command: npm install
      component: iot-consumer
  - name: start iot-consumer
    actions:
-   - workdir: '${CHE_PROJECTS_ROOT}/manuela-dev/components/iot-consumer'
+   - workdir: '${CHE_PROJECTS_ROOT}/iot-consumer'
      type: exec
      command: nodemon index.js
      component: iot-consumer
@@ -140,25 +140,25 @@ commands:
      component: iot-consumer
  - name: install Ionic and dependencies
    actions:
-   - workdir: '${CHE_PROJECTS_ROOT}/manuela-dev/components/iot-frontend'
+   - workdir: '${CHE_PROJECTS_ROOT}/iot-frontend'
      type: exec
      command: npm i -g ionic && npm install
      component: iot-frontend
  - name: start iot-frontend
    actions:
-   - workdir: '${CHE_PROJECTS_ROOT}/manuela-dev/components/iot-frontend'
+   - workdir: '${CHE_PROJECTS_ROOT}/iot-frontend'
      type: exec
      command: npm run serve:dev    
      component: iot-frontend  
  - name: audit fix dependencies
    actions:
-   - workdir: '${CHE_PROJECTS_ROOT}/manuela-dev/components/iot-frontend'
+   - workdir: '${CHE_PROJECTS_ROOT}/iot-frontend'
      type: exec
      command: npm audit fix  
      component: iot-frontend
  - name: Update iot-consumer URL config
    actions:
-   - workdir: '${CHE_PROJECTS_ROOT}/manuela-dev/components/iot-frontend/src/conf'
+   - workdir: '${CHE_PROJECTS_ROOT}/iot-frontend/src/conf'
      type: exec
      command: >-
       oc login --server=${KUBERNETES_SERVICE_HOST}:443 && 
